@@ -18,20 +18,22 @@ const pingRouter = require('./controllers/ping');
 app.use(cors());
 app.use(express.json());
 
-// controllers
-app.use('/api/ping', pingRouter);
-
 // middleware
 app
 	.use(middleware.requestLogger)
 	.use(morgan(middleware.reqMorganLogger))
-	.use(middleware.userExtractor)
-	.use(middleware.unknownEndpoint)
-	.use(middleware.errorHandler);
+	.use(middleware.userExtractor);
+
+// controllers
+app.use('/api/ping', pingRouter);
 
 if (process.env.NODE_ENV === 'test') {
 	const testingRouter = require('./controllers/testing');
 	app.use('/api/testing', testingRouter);
 }
+
+// error handling
+app.use(middleware.unknownEndpoint);
+app.use(middleware.errorHandler);
 
 module.exports = app;
