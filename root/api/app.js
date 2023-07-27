@@ -3,6 +3,9 @@ const app = express();
 
 // configurations
 const config = require('./utils/config');
+const middleware = require('./utils/middleware');
+const morgan = require('morgan');
+const logger = require('./utils/logger');
 
 require('express-async-errors');
 
@@ -12,7 +15,19 @@ const cors = require('cors');
 // routers
 const pingRouter = require('./controllers/ping');
 
-app.use(cors()).use(express.json()).use('/api/ping', pingRouter);
+app.use(cors());
+app.use(express.json());
+
+// controllers
+app.use('/api/ping', pingRouter);
+
+// middleware
+app
+	.use(middleware.requestLogger)
+	.use(morgan(middleware.reqMorganLogger))
+	.use(middleware.userExtractor)
+	.use(middleware.unknownEndpoint)
+	.use(middleware.errorHandler);
 
 if (process.env.NODE_ENV === 'test') {
 	const testingRouter = require('./controllers/testing');
