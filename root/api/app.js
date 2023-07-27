@@ -16,6 +16,7 @@ const cors = require('cors');
 const pingRouter = require('./controllers/ping');
 
 app.use(cors());
+app.use(express.static('dist'));
 app.use(express.json());
 
 // middleware
