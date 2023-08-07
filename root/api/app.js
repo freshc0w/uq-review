@@ -6,6 +6,7 @@ const config = require('./utils/config');
 const middleware = require('./utils/middleware');
 const morgan = require('morgan');
 const logger = require('./utils/logger');
+const mongoose = require('mongoose')
 
 require('express-async-errors');
 
@@ -18,6 +19,19 @@ const pingRouter = require('./controllers/ping');
 app.use(cors());
 app.use(express.static('dist'));
 app.use(express.json());
+
+// connecting to MONGODB
+mongoose.set('strictQuery', false);
+const url = config.MONGODB_URI;
+logger.info('connecting to', url);
+mongoose
+	.connect(url)
+	.then(res => {
+		logger.info('connected to MongoDB');
+	})
+	.catch(err => {
+		logger.info(`error connecting to MongoDB: ${err.message}`);
+	});
 
 // middleware
 app
