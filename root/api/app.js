@@ -15,6 +15,8 @@ const cors = require('cors');
 
 // routers
 const pingRouter = require('./controllers/ping');
+const usersRouter = require('./controllers/users');
+const loginRouter = require('./controllers/login');
 
 app.use(cors());
 app.use(express.static('dist'));
@@ -40,7 +42,10 @@ app
 	.use(middleware.userExtractor);
 
 // controllers
-app.use('/api/ping', pingRouter);
+app
+	.use('/api/ping', pingRouter)
+	.use('/api/users', usersRouter)
+	.use('/api/login', loginRouter);
 
 if (process.env.NODE_ENV === 'test') {
 	const testingRouter = require('./controllers/testing');
