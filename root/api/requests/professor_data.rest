@@ -1,2 +1,15 @@
-### Get a list of all users
-GET http://localhost:3001/api/users
+### Get a list of all professors
+GET http://localhost:3001/api/professors
+
+### Make a single professor
+POST http://localhost:3001/api/professors
+Content-Type: application/json
+
+{
+  "name": "Professor Snape",
+  "faculty": "Potions",
+  "avgRating": "70.8"
+}
+
+### Delete a single professor
+DELETE http://localhost:3001/api/professors/64d21511b034bb0eb383a9c9
