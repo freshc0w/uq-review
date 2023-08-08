@@ -28,7 +28,12 @@ professorsRouter.post('/', async (req, res) => {
 		name: body.name,
 		faculty: body.faculty,
 		avgRating: body.avgRating,
-		courses: body.courses.map(course => course.id),
+
+		// array of course ids
+		courses: body.courses,
+
+		// Reviews are not saved here. Only initialised
+		// reviews: body.reviews,
 	});
 
 	const professorSaved = await professor.save();
@@ -37,8 +42,35 @@ professorsRouter.post('/', async (req, res) => {
 		courseFound.professor = courseFound.professor.concat(professorSaved._id);
 		await courseFound.save();
 	});
-	
+
 	res.json(professorSaved);
+});
+
+professorsRouter.put('/:id', async (req, res) => {
+	const body = req.body;
+
+	const professor = {
+		name: body.name,
+		faculty: body.faculty,
+		avgRating: body.avgRating,
+		courses: body.courses,
+	};
+
+	await Professor.findByIdAndUpdate(
+		req.params.id,
+		professor,
+		{ new: true }
+	);
+
+	res.json(updatedProfessor);
+})
+
+professorsRouter.delete('/:id', async (req, res) => {
+	const professor = await Professor.findById(req.params.id);
+
+	professor
+		? await professor.remove().status(204).end()
+		: res.status(404).end({ error: 'Professor not found' });
 });
 
 module.exports = professorsRouter;

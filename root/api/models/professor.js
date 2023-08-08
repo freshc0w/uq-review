@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const professorSchema = mongoose.Schema({
-	name: String,
+	name: {
+		type: String,
+		required: true,
+	},
 	faculty: String,
 	avgRating: Number,
 	courses: [
