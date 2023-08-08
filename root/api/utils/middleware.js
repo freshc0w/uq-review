@@ -1,5 +1,6 @@
 const logger = require('./logger');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
 // Middleware
 const requestLogger = (req, res, next) => {
@@ -38,10 +39,14 @@ const unknownEndpoint = (req, res, next) => {
 };
 
 const errorHandler = (error, req, res, next) => {
+	logger.error(error.message);
+
 	if (error.name === 'CastError') {
 		return response.status(400).send({ error: 'malformatted id' });
 	} else if (error.name === 'ValidationError') {
 		// Invalid params from mongoose validation schema
+		return response.status(400).json({ error: error.message });
+	} else if (error.name === 'ReferenceError') {
 		return response.status(400).json({ error: error.message });
 	} else if (error.name === 'JsonWebTokenError') {
 		return response.status(400).json({ error: error.message });
@@ -53,8 +58,8 @@ const errorHandler = (error, req, res, next) => {
 };
 
 module.exports = {
-	requestLogger,
 	reqMorganLogger,
+	requestLogger,
 	tokensExtractor,
 	userExtractor,
 	unknownEndpoint,

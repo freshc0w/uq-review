@@ -1,0 +1,34 @@
+### Get a list of all users
+GET http://localhost:3001/api/users
+
+### Make a single user
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "username": "fiveOnes",
+  "email": "fiveOnes@gmail.com",
+  "name": "five_ones",
+  "password": "11111"
+}
+
+### Login with valid user
+POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+  "username": "fiveOnes",
+  "password": "11111"
+}
+
+### Login with invalid user
+POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+  "username": "fiveOnes",
+  "password": "1111"
+}
+
+### Delete a single user
+DELETE http://localhost:3001/api/users/64d1fb7e81a7898dee90a8f6
