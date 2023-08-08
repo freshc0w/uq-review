@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
 	},
 	name: String,
 	passwordHash: String,
+	email: String,
 	reviews: [
 		{
 			courses: [
