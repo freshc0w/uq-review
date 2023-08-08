@@ -24,13 +24,30 @@ const reqMorganLogger = (tokens, req, res) =>
 		JSON.stringify(req.body),
 	].join(' ');
 
+// Extract token from header and make req.token
 const tokensExtractor = (req, res, next) => {
-	// TODO: extract token from req
+	const authorization = req.get('authorization');
+	req.token =
+		authorization && authorization.startsWith('Bearer ')
+			? authorization.replace('Bearer ', '')
+			: null;
 	next();
 };
 
-const userExtractor = (req, res, next) => {
-	// TODO: extract user from req
+// Extract user from token and make req.user
+const userExtractor = async (req, res, next) => {
+	if (!req.token) {
+		next();
+		return;
+	}
+
+	// req,token is from middleware.tokensExtractor
+	const decodedToken = jwt.verify(req.token, process.env.SECRET);
+
+	if (!decodedToken.id)
+		return res.status(401).json({ error: 'token missing or invalid' });
+
+	req.user = await User.findById(decodedToken.id);
 	next();
 };
 

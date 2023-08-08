@@ -38,9 +38,11 @@ mongoose
 app
 	.use(middleware.requestLogger)
 	.use(morgan(middleware.reqMorganLogger))
+	.use(middleware.tokensExtractor)
 	.use(middleware.userExtractor);
 
 // controllers
+// TODO: middleware.userExtractor on review routers.
 app
 	.use('/api/ping', pingRouter)
 	.use('/api/users', usersRouter)
