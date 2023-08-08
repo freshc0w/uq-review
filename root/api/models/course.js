@@ -1,7 +1,13 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const courseSchema = new mongoose.Schema({
-	code: String,
+	code: {
+		type: String,
+		required: true,
+		unique: true,
+		minlength: 3,
+	},
 	title: String,
 	url: String,
 	faculty: String,
@@ -15,6 +21,8 @@ const courseSchema = new mongoose.Schema({
 		},
 	],
 });
+
+courseSchema.plugin(uniqueValidator);
 
 courseSchema.set('toJSON', {
 	transform: (document, returnedObject) => {
