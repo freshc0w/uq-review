@@ -14,21 +14,16 @@ usersRouter.post('/', async (req, res) => {
 	const saltRounds = 10;
 	const passwordHash = await bcrypt.hash(password, saltRounds);
 
-	try {
-		const user = new User({
-			username,
-			email,
-			name,
-			passwordHash,
-		});
+	const user = new User({
+		username,
+		email,
+		name,
+		passwordHash,
+	});
 
-		const savedUser = await user.save();
+	const savedUser = await user.save();
 
-		res.status(201).json(savedUser);
-	} catch (err) {
-		console.error(err);
-		res.status(400).json({ error: err.message });
-	}
+	res.status(201).json(savedUser);
 });
 
 usersRouter.delete('/:id', async (req, res) => {

@@ -56,21 +56,20 @@ professorsRouter.put('/:id', async (req, res) => {
 		courses: body.courses,
 	};
 
-	await Professor.findByIdAndUpdate(
-		req.params.id,
-		professor,
-		{ new: true }
-	);
+	await Professor.findByIdAndUpdate(req.params.id, professor, { new: true });
 
 	res.json(updatedProfessor);
-})
+});
 
 professorsRouter.delete('/:id', async (req, res) => {
 	const professor = await Professor.findById(req.params.id);
 
-	professor
-		? await professor.remove().status(204).end()
-		: res.status(404).end({ error: 'Professor not found' });
+	if (professor) {
+		await Professor.findByIdAndRemove(req.params.id);
+		res.status(204).end();
+	} else {
+		res.status(404).json({ error: 'Professor not found' });
+	}
 });
 
 module.exports = professorsRouter;
