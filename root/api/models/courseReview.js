@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const courseReviewSchema = new mongoose.Schema({
 	title: String,
-	author: String,
 	content: String,
 	semester: String,
+  date: String,
 	rating: Number,
 	difficulty: Number,
 	lectureQuality: Number,
@@ -13,16 +13,16 @@ const courseReviewSchema = new mongoose.Schema({
 	likes: Number,
 	dislikes: Number,
 	reports: Number,
+	pros: [],
+	cons: [],
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
 	},
-	reviews: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'CourseReview'
-    }
-  ],
+	course: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Course',
+	},
 });
 
 courseReviewSchema.set('toJSON', {

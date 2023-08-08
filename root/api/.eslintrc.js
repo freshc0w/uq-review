@@ -19,6 +19,7 @@ module.exports = {
 	parserOptions: {
 		ecmaVersion: 'latest',
 	},
+  plugins: ['jest', 'cypress'],
 	rules: {
 		indent: [0, 4],
 		quotes: ['error', 'single'],
