@@ -12,4 +12,4 @@ Content-Type: application/json
 }
 
 ### Delete a single professor
-DELETE http://localhost:3001/api/professors/64d21511b034bb0eb383a9c9
+DELETE http://localhost:3001/api/professors/64d2f452f33cc6882ae39ff0

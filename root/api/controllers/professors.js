@@ -2,10 +2,6 @@ const professorsRouter = require('express').Router();
 // TODO: try deconstruct this
 const Professor = require('../models/professor');
 const Course = require('../models/course');
-const User = require('../models/user');
-const jwt = require('jsonwebtoken');
-
-const logger = require('../utils/logger');
 
 professorsRouter.get('/', async (req, res) => {
 	const professors = await Professor.find({});
@@ -20,9 +16,6 @@ professorsRouter.get('/:id', async (req, res) => {
 
 professorsRouter.post('/', async (req, res) => {
 	const body = req.body;
-
-	// from middleware userExtractor
-	const user = req.user;
 
 	const professor = new Professor({
 		name: body.name,
