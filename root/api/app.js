@@ -15,6 +15,7 @@ const cors = require('cors');
 // routers
 const pingRouter = require('./controllers/ping');
 const usersRouter = require('./controllers/users');
+const coursesRouter = require('./controllers/courses');
 const professorsRouter = require('./controllers/professors');
 const loginRouter = require('./controllers/login');
 
@@ -48,6 +49,7 @@ app
 	.use('/api/ping', pingRouter)
 	.use('/api/users', usersRouter)
 	.use('/api/login', loginRouter)
+	.use('/api/courses', coursesRouter)
 	.use('/api/professors', professorsRouter);
 
 if (process.env.NODE_ENV === 'test') {

@@ -1,0 +1,2 @@
+### Get a list of all courses
+GET http://localhost:3001/api/courses

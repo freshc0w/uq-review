@@ -29,6 +29,7 @@ professorsRouter.post('/', async (req, res) => {
 		// reviews: body.reviews,
 	});
 
+	// TODO: find course id by name of the course code given in the body.
 	const professorSaved = await professor.save();
 	professor.courses.forEach(async course => {
 		const courseFound = await Course.findById(course);
@@ -47,6 +48,7 @@ professorsRouter.put('/:id', async (req, res) => {
 		faculty: body.faculty,
 		avgRating: body.avgRating,
 		courses: body.courses,
+		// TODO: reviews: body.reviews, (?) Should we allow this?
 	};
 
 	await Professor.findByIdAndUpdate(req.params.id, professor, { new: true });
