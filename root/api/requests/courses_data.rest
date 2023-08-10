@@ -34,3 +34,6 @@ Content-Type: application/json
 
 ### Delete a course
 DELETE http://localhost:3001/api/courses/64d472dd5dd883cfffd5de3f
+
+### Get a list of all the course's reviews
+GET http://localhost:3001/api/courses/64d472dd5dd883cfffd5de3f/reviews
