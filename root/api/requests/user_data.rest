@@ -1,6 +1,9 @@
 ### Get a list of all users
 GET http://localhost:3001/api/users
 
+### GET a single user
+GET http://localhost:3001/api/users/64d1fb8f81a7898dee90a8fc
+
 ### Make a single user
 POST http://localhost:3001/api/users
 Content-Type: application/json

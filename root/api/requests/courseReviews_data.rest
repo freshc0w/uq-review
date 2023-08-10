@@ -1,0 +1,60 @@
+### GET all course reviews
+GET http://localhost:3001/api/courseReviews
+
+### GET a specific course review.
+GET http://localhost:3001/api/courseReviews/64d48a455619fa3955183e08
+
+### CREATE a new course review.
+POST http://localhost:3001/api/courseReviews
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQxZmI4ZjgxYTc4OThkZWU5MGE4ZmMiLCJpYXQiOjE2OTE2NDkxNDYsImV4cCI6MTY5MjI1Mzk0Nn0.YAtDnl2gw8en1LCnd5GVfp6D_Vumf3tyHyaZ73W20_8
+
+{
+  "title": "Introduction to Computer Science Review",
+  "content": "I thoroughly enjoyed this course.",
+  "semester": "Fall 2023",
+  "professor": "Professor Snape",
+  "date": "2023-08-10T12:34:56Z",
+  "rating": 4.5,
+  "difficulty": 3,
+  "lectureQuality": 4,
+  "tutorialQuality": 3,
+  "workload": 2,
+  "likes": 15,
+  "dislikes": 2,
+  "reports": 0,
+  "pros": ["Engaging lectures", "Helpful resources"],
+  "cons": ["Heavy workload"],
+  "course": "64d472dd5dd883cfffd5de3f"
+}
+
+### UPDATE a course review
+PUT http://localhost:3001/api/courseReviews/64d48a455619fa3955183e08
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQxZmI4ZjgxYTc4OThkZWU5MGE4ZmMiLCJpYXQiOjE2OTE2NDkxNDYsImV4cCI6MTY5MjI1Mzk0Nn0.YAtDnl2gw8en1LCnd5GVfp6D_Vumf3tyHyaZ73W20_8
+
+{
+  "title": "Introduction to Computer Science Review",
+  "content": "Actually, I didn't enjoy this course...",
+  "semester": "Fall 2023",
+  "professor": "Professor Snape",
+  "date": "2023-08-10T12:34:56Z",
+  "rating": 4.0,
+  "difficulty": 3,
+  "lectureQuality": 4,
+  "tutorialQuality": 3,
+  "workload": 2,
+  "likes": 15,
+  "dislikes": 2,
+  "reports": 0,
+  "pros": ["Engaging lectures", "Helpful resources"],
+  "cons": ["Heavy workload"],
+  "course": "64d472dd5dd883cfffd5de3f"
+}
+
+### DELETE a course review.
+DELETE http://localhost:3001/api/courseReviews/64d48a455619fa3955183e08
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQxZmI4ZjgxYTc4OThkZWU5MGE4ZmMiLCJpYXQiOjE2OTE2NDkxNDYsImV4cCI6MTY5MjI1Mzk0Nn0.YAtDnl2gw8en1LCnd5GVfp6D_Vumf3tyHyaZ73W20_8
+
+### TOKEN
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQxZmI4ZjgxYTc4OThkZWU5MGE4ZmMiLCJpYXQiOjE2OTE2NDkxNDYsImV4cCI6MTY5MjI1Mzk0Nn0.YAtDnl2gw8en1LCnd5GVfp6D_Vumf3tyHyaZ73W20_8

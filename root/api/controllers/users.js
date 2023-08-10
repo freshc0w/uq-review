@@ -7,6 +7,12 @@ usersRouter.get('/', async (req, res) => {
 	res.json(users);
 });
 
+usersRouter.get('/:id', async (req, res) => {
+	const { id } = req.params;
+	const user = await User.findById(id);
+	return !user ? res.status(404).end() : res.json(user);
+});
+
 // TODO: add validation
 usersRouter.post('/', async (req, res) => {
 	const { username, email, name, password } = req.body;
