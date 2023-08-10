@@ -124,6 +124,7 @@ courseReviewsRouter.put('/:id', async (req, res) => {
 });
 
 // Delete a course review
+// User's reviews by default are deleted.
 courseReviewsRouter.delete('/:id', async (req, res) => {
 	const review = await CourseReview.findById(req.params.id);
 	const user = req.user;
