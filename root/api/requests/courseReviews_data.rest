@@ -2,12 +2,12 @@
 GET http://localhost:3001/api/courseReviews
 
 ### GET a specific course review.
-GET http://localhost:3001/api/courseReviews/64d48a455619fa3955183e08
+GET http://localhost:3001/api/courseReviews/64d49cece8cf46b1a9f49ece
 
 ### CREATE a new course review.
 POST http://localhost:3001/api/courseReviews
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQxZmI4ZjgxYTc4OThkZWU5MGE4ZmMiLCJpYXQiOjE2OTE2NDkxNDYsImV4cCI6MTY5MjI1Mzk0Nn0.YAtDnl2gw8en1LCnd5GVfp6D_Vumf3tyHyaZ73W20_8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
 
 {
   "title": "Introduction to Computer Science Review",
@@ -29,9 +29,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpd
 }
 
 ### UPDATE a course review
-PUT http://localhost:3001/api/courseReviews/64d48a455619fa3955183e08
+PUT http://localhost:3001/api/courseReviews/64d49cece8cf46b1a9f49ece
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQxZmI4ZjgxYTc4OThkZWU5MGE4ZmMiLCJpYXQiOjE2OTE2NDkxNDYsImV4cCI6MTY5MjI1Mzk0Nn0.YAtDnl2gw8en1LCnd5GVfp6D_Vumf3tyHyaZ73W20_8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
 
 {
   "title": "Introduction to Computer Science Review",
@@ -53,8 +53,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpd
 }
 
 ### DELETE a course review.
-DELETE http://localhost:3001/api/courseReviews/64d48a455619fa3955183e08
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQxZmI4ZjgxYTc4OThkZWU5MGE4ZmMiLCJpYXQiOjE2OTE2NDkxNDYsImV4cCI6MTY5MjI1Mzk0Nn0.YAtDnl2gw8en1LCnd5GVfp6D_Vumf3tyHyaZ73W20_8
+DELETE http://localhost:3001/api/courseReviews/64d49cece8cf46b1a9f49ece
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
 
 ### TOKEN
-# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQxZmI4ZjgxYTc4OThkZWU5MGE4ZmMiLCJpYXQiOjE2OTE2NDkxNDYsImV4cCI6MTY5MjI1Mzk0Nn0.YAtDnl2gw8en1LCnd5GVfp6D_Vumf3tyHyaZ73W20_8
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao

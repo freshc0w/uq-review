@@ -15,9 +15,10 @@ const cors = require('cors');
 // routers
 const pingRouter = require('./controllers/ping');
 const usersRouter = require('./controllers/users');
+const loginRouter = require('./controllers/login');
 const coursesRouter = require('./controllers/courses');
 const professorsRouter = require('./controllers/professors');
-const loginRouter = require('./controllers/login');
+const courseReviewsRouter = require('./controllers/courseReviews');
 
 app.use(cors());
 app.use(express.static('dist'));
@@ -50,7 +51,8 @@ app
 	.use('/api/users', usersRouter)
 	.use('/api/login', loginRouter)
 	.use('/api/courses', coursesRouter)
-	.use('/api/professors', professorsRouter);
+	.use('/api/professors', professorsRouter)
+	.use('/api/courseReviews', courseReviewsRouter);
 
 if (process.env.NODE_ENV === 'test') {
 	const testingRouter = require('./controllers/testing');

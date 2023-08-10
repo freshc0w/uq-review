@@ -2,7 +2,7 @@
 GET http://localhost:3001/api/users
 
 ### GET a single user
-GET http://localhost:3001/api/users/64d1fb8f81a7898dee90a8fc
+GET http://localhost:3001/api/users/64d495628f3a68fdc45e5fff
 
 ### Make a single user
 POST http://localhost:3001/api/users
@@ -13,6 +13,17 @@ Content-Type: application/json
   "email": "fiveOnes@gmail.com",
   "name": "five_ones",
   "password": "11111"
+}
+
+### Update a single user and resets reviews. CAN ALSO UPDATE REVIEWS
+PUT http://localhost:3001/api/users/64d495628f3a68fdc45e5fff
+Content-Type: application/json
+
+{
+  "username": "fiveOnes",
+  "email": "fiveOnes@gmail.com",
+  "name": "five_ones",
+  "courseReviews": [],
 }
 
 ### Login with valid user
@@ -34,4 +45,6 @@ Content-Type: application/json
 }
 
 ### Delete a single user
-DELETE http://localhost:3001/api/users/64d1fb7e81a7898dee90a8f6
+DELETE http://localhost:3001/api/users/64d495628f3a68fdc45e5fff
+
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao

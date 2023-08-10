@@ -15,22 +15,30 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Email is required.'],
     unique: true,
   },
-	reviews: [
-		{
-			courses: [
-				{
-					type: mongoose.Schema.Types.ObjectId,
-					ref: 'CourseReview',
-				},
-			],
-			professors: [
-				{
-					type: mongoose.Schema.Types.ObjectId,
-					ref: 'ProfessorReview',
-				},
-			],
-		},
-	],
+  courseReviews: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'CourseReview',
+  }],
+  professorReviews: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ProfessorReview',
+  }],
+	// reviews: [
+	// 	{
+	// 		courses: [
+	// 			{
+	// 				type: mongoose.Schema.Types.ObjectId,
+	// 				ref: 'CourseReview',
+	// 			},
+	// 		],
+	// 		professors: [
+	// 			{
+	// 				type: mongoose.Schema.Types.ObjectId,
+	// 				ref: 'ProfessorReview',
+	// 			},
+	// 		],
+	// 	},
+	// ],
 });
 
 // Must have unique username

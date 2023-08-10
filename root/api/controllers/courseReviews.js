@@ -67,8 +67,12 @@ courseReviewsRouter.post('/', async (req, res) => {
 	const savedCourseReview = await createdCourseReview.save();
 
 	// Update the user's courseReviews array
-	user.reviews = user.reviews.concat(savedCourseReview._id);
+	user.courseReviews = user.courseReviews.concat(savedCourseReview._id);
 	await user.save();
+
+	// user.reviews.courses = !user.reviews.courses
+	// 	? savedCourseReview._id
+	// 	: user.reviews.courses.concat(savedCourseReview._id);
 
 	res.json(savedCourseReview);
 });

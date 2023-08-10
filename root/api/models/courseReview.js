@@ -4,7 +4,8 @@ const courseReviewSchema = new mongoose.Schema({
 	title: String,
 	content: String,
 	semester: String,
-  date: String,
+  professor: String,
+  date: Date,
 	rating: Number,
 	difficulty: Number,
 	lectureQuality: Number,
@@ -22,6 +23,7 @@ const courseReviewSchema = new mongoose.Schema({
 	course: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Course',
+    required: true,
 	},
 });
 
