@@ -1,2 +1,36 @@
 ### Get a list of all courses
 GET http://localhost:3001/api/courses
+
+### Get a single course
+GET http://localhost:3001/api/courses/64d472dd5dd883cfffd5de3f
+
+### Create a course
+POST http://localhost:3001/api/courses
+Content-Type: application/json
+
+{
+  "code": "CSSE1001",
+  "title": "Introduction to Computer Science",
+  "url": "https://example.com/courses/cs101",
+  "faculty": "Computer Science Department",
+  "professor": "John Doe",
+  "avgRating": 4.5,
+  "units": 2
+}
+
+### Update a course
+PUT http://localhost:3001/api/courses/64d472dd5dd883cfffd5de3f
+Content-Type: application/json
+
+{
+  "code": "CSSE1001",
+  "title": "Introduction to Computer Science",
+  "url": "https://example.com/courses/cs101",
+  "faculty": "Computer Science Department",
+  "professor": "John Doe",
+  "avgRating": 4.0,
+  "units": 2
+}
+
+### Delete a course
+DELETE http://localhost:3001/api/courses/64d472dd5dd883cfffd5de3f

@@ -4,7 +4,6 @@ const Course = require('../models/course');
 
 coursesRouter.get('/', async (req, res) => {
 	const courses = await Course.find({});
-	res.json(courses.map(course => course.toJSON()));
 	res.json(courses);
 });
 
@@ -47,7 +46,6 @@ coursesRouter.put('/:id', async (req, res) => {
 		professor: body.professor, // TODO: Logic of finding a professor id from the name (handled at frontend?)
 		avgRating: body.avgRating,
 		units: body.units,
-		reviews: body.reviews,
 	};
 
 	await Course.findByIdAndUpdate(req.params.id, course, { new: true });
