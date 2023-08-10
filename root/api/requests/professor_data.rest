@@ -1,8 +1,11 @@
+@BASE_URL = http://localhost:3001/api
+@ID = 64d2f452f33cc6882ae39ff0
+
 ### Get a list of all professors
-GET http://localhost:3001/api/professors
+GET {{BASE_URL}}/professors
 
 ### Make a single professor
-POST http://localhost:3001/api/professors
+POST {{BASE_URL}}/professors
 Content-Type: application/json
 
 {
@@ -12,4 +15,4 @@ Content-Type: application/json
 }
 
 ### Delete a single professor
-DELETE http://localhost:3001/api/professors/64d2f452f33cc6882ae39ff0
+DELETE {{BASE_URL}}/professors/{{ID}}

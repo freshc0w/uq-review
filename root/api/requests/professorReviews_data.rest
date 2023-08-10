@@ -1,7 +1,6 @@
 @BASE_URL = http://localhost:3001/api
-@ID = 64d4aa91a5cb19ad6b12622b
 @TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
-
+@ID = 64d4aa91a5cb19ad6b12622b
 
 ### GET all professor reviews
 GET {{BASE_URL}}/professorReviews

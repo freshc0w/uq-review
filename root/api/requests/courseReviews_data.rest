@@ -1,13 +1,17 @@
+@BASE_URL = http://localhost:3001/api
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
+@ID = 64d49cece8cf46b1a9f49ece
+
 ### GET all course reviews
-GET http://localhost:3001/api/courseReviews
+GET {{BASE_URL}}/courseReviews
 
 ### GET a specific course review.
-GET http://localhost:3001/api/courseReviews/64d49cece8cf46b1a9f49ece
+GET {{BASE_URL}}/courseReviews/{{ID}}
 
 ### CREATE a new course review.
-POST http://localhost:3001/api/courseReviews
+POST {{BASE_URL}}/courseReviews
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
+Authorization: Bearer {{TOKEN}}
 
 {
   "title": "Introduction to Computer Science Review",
@@ -29,9 +33,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpd
 }
 
 ### UPDATE a course review
-PUT http://localhost:3001/api/courseReviews/64d49cece8cf46b1a9f49ece
+PUT {{BASE_URL}}/courseReviews/{{ID}}
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
+Authorization: Bearer {{TOKEN}}
 
 {
   "title": "Introduction to Computer Science Review",
@@ -53,8 +57,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpd
 }
 
 ### DELETE a course review.
-DELETE http://localhost:3001/api/courseReviews/64d49cece8cf46b1a9f49ece
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
-
-### TOKEN
-# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
+DELETE {{BASE_URL}}/courseReviews/{{ID}}
+Authorization: Bearer {{TOKEN}}

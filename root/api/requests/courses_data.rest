@@ -1,11 +1,13 @@
+@BASE_URL = http://localhost:3001/api
+@ID = 64d472dd5dd883cfffd5de3f
 ### Get a list of all courses
-GET http://localhost:3001/api/courses
+GET {{BASE_URL}}/courses
 
 ### Get a single course
-GET http://localhost:3001/api/courses/64d472dd5dd883cfffd5de3f
+GET {{BASE_URL}}/courses/{{ID}}
 
 ### Create a course
-POST http://localhost:3001/api/courses
+POST {{BASE_URL}}/courses
 Content-Type: application/json
 
 {
@@ -19,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Update a course
-PUT http://localhost:3001/api/courses/64d472dd5dd883cfffd5de3f
+PUT {{BASE_URL}}/courses/{{ID}}
 Content-Type: application/json
 
 {
@@ -33,7 +35,7 @@ Content-Type: application/json
 }
 
 ### Delete a course
-DELETE http://localhost:3001/api/courses/64d472dd5dd883cfffd5de3f
+DELETE {{BASE_URL}}/courses/{{ID}}
 
 ### Get a list of all the course's reviews
-GET http://localhost:3001/api/courses/64d472dd5dd883cfffd5de3f/reviews
+GET {{BASE_URL}}/courses/{{ID}}/reviews

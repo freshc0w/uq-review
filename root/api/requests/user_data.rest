@@ -1,12 +1,14 @@
-@base_url = http://localhost:3001/api
+@BASE_URL = http://localhost:3001/api
+@ID = 64d495628f3a68fdc45e5fff
+
 ### Get a list of all users
-GET {{base_url}}/users
+GET {{BASE_URL}}/users
 
 ### GET a single user
-GET http://localhost:3001/api/users/64d495628f3a68fdc45e5fff
+GET {{BASE_URL}}/users/{{ID}}
 
 ### Make a single user
-POST http://localhost:3001/api/users
+POST {{BASE_URL}}/users
 Content-Type: application/json
 
 {
@@ -17,7 +19,7 @@ Content-Type: application/json
 }
 
 ### Update a single user and resets reviews. CAN ALSO UPDATE REVIEWS
-PUT http://localhost:3001/api/users/64d495628f3a68fdc45e5fff
+PUT {{BASE_URL}}/users/{{ID}}
 Content-Type: application/json
 
 {
@@ -28,7 +30,7 @@ Content-Type: application/json
 }
 
 ### Login with valid user
-POST http://localhost:3001/api/login
+POST {{BASE_URL}}/login
 Content-Type: application/json
 
 {
@@ -37,7 +39,7 @@ Content-Type: application/json
 }
 
 ### Login with invalid user
-POST http://localhost:3001/api/login
+POST {{BASE_URL}}/login
 Content-Type: application/json
 
 {
@@ -46,6 +48,6 @@ Content-Type: application/json
 }
 
 ### Delete a single user
-DELETE http://localhost:3001/api/users/64d495628f3a68fdc45e5fff
+DELETE {{BASE_URL}}/users/{{ID}}
 
 # eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
