@@ -3,35 +3,67 @@ const usersRouter = require('express').Router();
 const User = require('../models/user');
 
 usersRouter.get('/', async (req, res) => {
-	const users = await User.find({}).populate('courseReviews', {
-		title: 1,
-		content: 1,
-		semester: 1,
-		date: 1,
-		rating: 1,
-		likes: 1,
-		dislikes: 1,
-		reports: 1,
-		pros: 1,
-		cons: 1,
-	});
+	const users = await User.find({})
+		.populate('courseReviews', {
+			title: 1,
+			content: 1,
+			semester: 1,
+			date: 1,
+			rating: 1,
+			likes: 1,
+			dislikes: 1,
+			reports: 1,
+			pros: 1,
+			cons: 1,
+		})
+		.populate('professorReviews', {
+			title: 1,
+			content: 1,
+			semester: 1,
+			date: 1,
+			rating: 1,
+			communicationRating: 1,
+			approachabilityRating: 1,
+			feedbackRating: 1,
+			likes: 1,
+			dislikes: 1,
+			reports: 1,
+			pros: 1,
+			cons: 1,
+		});
 	res.json(users);
 });
 
 usersRouter.get('/:id', async (req, res) => {
 	const { id } = req.params;
-	const user = await User.findById(id).populate('courseReviews', {
-		title: 1,
-		content: 1,
-		semester: 1,
-		date: 1,
-		rating: 1,
-		likes: 1,
-		dislikes: 1,
-		reports: 1,
-		pros: 1,
-		cons: 1,
-	});
+	const user = await User.findById(id)
+		.populate('courseReviews', {
+			title: 1,
+			content: 1,
+			semester: 1,
+			date: 1,
+			rating: 1,
+			likes: 1,
+			dislikes: 1,
+			reports: 1,
+			pros: 1,
+			cons: 1,
+		})
+		.populate('professorReviews', {
+			title: 1,
+			content: 1,
+			semester: 1,
+			date: 1,
+			rating: 1,
+			communicationRating: 1,
+			approachabilityRating: 1,
+			feedbackRating: 1,
+			likes: 1,
+			dislikes: 1,
+			reports: 1,
+			pros: 1,
+			cons: 1,
+		});
 	return !user ? res.status(404).end() : res.json(user);
 });
 

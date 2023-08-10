@@ -36,7 +36,9 @@ courseReviewsRouter.get('/:id', async (req, res) => {
 			avgRating: 1,
 		});
 
-	foundCourseReview ? res.json(foundCourseReview) : res.status(404).end();
+	foundCourseReview
+		? res.json(foundCourseReview)
+		: res.status(404).json({ error: 'review not found' }).end();
 });
 
 // Create a review
@@ -118,8 +120,6 @@ courseReviewsRouter.put('/:id', async (req, res) => {
 		new: true,
 	});
 
-	// TODO: Update the user's courseReviews array as well
-
 	res.json(updatedCourseReview);
 });
 
@@ -134,6 +134,7 @@ courseReviewsRouter.delete('/:id', async (req, res) => {
 			.status(404)
 			.json({ error: 'Review not found or already deleted.' });
 
+	// only allow deletion if the user is the creator of the review
 	if (review.user.toString() === user.id.toString()) {
 		await CourseReview.findByIdAndRemove(req.params.id);
 		res.status(204).end();

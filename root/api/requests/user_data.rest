@@ -1,5 +1,6 @@
+@base_url = http://localhost:3001/api
 ### Get a list of all users
-GET http://localhost:3001/api/users
+GET {{base_url}}/users
 
 ### GET a single user
 GET http://localhost:3001/api/users/64d495628f3a68fdc45e5fff

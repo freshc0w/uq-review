@@ -24,7 +24,7 @@ const professorReviewSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
 	},
-	prfessor: {
+	professor: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Professor',
 	},

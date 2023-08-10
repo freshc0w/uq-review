@@ -19,6 +19,7 @@ const loginRouter = require('./controllers/login');
 const coursesRouter = require('./controllers/courses');
 const professorsRouter = require('./controllers/professors');
 const courseReviewsRouter = require('./controllers/courseReviews');
+const professorReviewsRouter = require('./controllers/professorReviews');
 
 app.use(cors());
 app.use(express.static('dist'));
@@ -52,7 +53,8 @@ app
 	.use('/api/login', loginRouter)
 	.use('/api/courses', coursesRouter)
 	.use('/api/professors', professorsRouter)
-	.use('/api/courseReviews', courseReviewsRouter);
+	.use('/api/courseReviews', courseReviewsRouter)
+	.use('/api/professorReviews', professorReviewsRouter);
 
 if (process.env.NODE_ENV === 'test') {
 	const testingRouter = require('./controllers/testing');

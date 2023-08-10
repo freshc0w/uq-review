@@ -1,0 +1,60 @@
+@BASE_URL = http://localhost:3001/api
+@ID = 64d4aa91a5cb19ad6b12622b
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
+
+
+### GET all professor reviews
+GET {{BASE_URL}}/professorReviews
+
+### GET all professor reviews for a specific professor
+GET {{BASE_URL}}/professorReviews/{{ID}}
+
+### CREATE a professor review
+POST {{BASE_URL}}/professorReviews
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "title": "Professor Review - John Smith",
+  "content": "Professor Smith was very knowledgeable and approachable.",
+  "semester": "Spring 2023",
+  "date": "2023-08-10T15:45:00Z",
+  "rating": 4.7,
+  "communicationRating": 4,
+  "approachabilityRating": 5,
+  "feedbackRating": 4,
+  "likes": 10,
+  "dislikes": 1,
+  "reports": 0,
+  "pros": ["Excellent explanations", "Helpful feedback"],
+  "cons": ["Assignments were challenging"],
+  "coursesTaken": ["64d472dd5dd883cfffd5de3f"],
+  "professor": "64d215c9b034bb0eb383a9d2"
+}
+
+### UPDATE a professor review
+PUT {{BASE_URL}}/professorReviews/{{ID}}
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "title": "Professor Review - John Smith",
+  "content": "Actually, professor Smith was NOT very knowledgeable and approachable.",
+  "semester": "Spring 2023",
+  "date": "2023-08-10T15:45:00Z",
+  "rating": 4.0,
+  "communicationRating": 4,
+  "approachabilityRating": 5,
+  "feedbackRating": 4,
+  "likes": 10,
+  "dislikes": 1,
+  "reports": 0,
+  "pros": ["Excellent explanations", "Helpful feedback"],
+  "cons": ["Assignments were challenging"],
+  "coursesTaken": ["64d472dd5dd883cfffd5de3f"],
+  "professor": "64d215c9b034bb0eb383a9d2"
+}
+
+### DELETE a professor review
+DELETE {{BASE_URL}}/professorReviews/{{ID}}
+Authorization: Bearer {{TOKEN}}
