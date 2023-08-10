@@ -3,7 +3,9 @@ const { v4: uuidv4 } = require('uuid');
 const Course = require('../models/course');
 
 coursesRouter.get('/', async (req, res) => {
-	const courses = await Course.find({});
+	const courses = await Course.find({}).populate('reviews').populate('reviews', {
+    // TODO: populate reviews info
+  });
 	res.json(courses);
 });
 
