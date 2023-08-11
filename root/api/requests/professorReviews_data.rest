@@ -1,6 +1,7 @@
 @BASE_URL = http://localhost:3001/api
 @TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
-@ID = 64d4aa91a5cb19ad6b12622b
+@ID = 64d5d41f9e4c114d2dc13499
+@COMMENT_ID = e27c6207-6333-49e8-89de-101fbbc1d139
 
 ### GET all professor reviews
 GET {{BASE_URL}}/professorReviews
@@ -57,3 +58,27 @@ Authorization: Bearer {{TOKEN}}
 ### DELETE a professor review
 DELETE {{BASE_URL}}/professorReviews/{{ID}}
 Authorization: Bearer {{TOKEN}}
+
+### GET all the comments in a course review.
+GET {{BASE_URL}}/professorReviews/{{ID}}/comments
+
+### POST a new comment to a course review.
+POST {{BASE_URL}}/professorReviews/{{ID}}/comments
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "comment": "I agree with this review."
+}
+
+### UPDATE a comment in a course review.
+PUT {{BASE_URL}}/professorReviews/{{ID}}/comments/{{COMMENT_ID}}
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "comment": "Actually.. I disagree with this review."
+}
+
+### DELETE a comment from a course review.
+DELETE {{BASE_URL}}/professorReviews/{{ID}}/comments/{{COMMENT_ID}}

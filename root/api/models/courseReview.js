@@ -16,6 +16,7 @@ const courseReviewSchema = new mongoose.Schema({
 	reports: Number,
 	pros: [],
 	cons: [],
+	comments: [],
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',

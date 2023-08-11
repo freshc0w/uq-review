@@ -1,7 +1,7 @@
 const professorReviewsRouter = require('express').Router();
 const ProfessorReview = require('../models/professorReview');
-const User = require('../models/user');
 const Professor = require('../models/professor');
+const handleComments = require('../helper/handleReviewComments');
 
 // Get all reviews from all professors
 professorReviewsRouter.get('/', async (req, res) => {
@@ -148,6 +148,27 @@ professorReviewsRouter.delete('/:id', async (req, res) => {
 			error: 'Cannot delete review that was not created by logged in user.',
 		});
 	}
+});
+
+// Dealing with comments
+// GET all comments from a review
+professorReviewsRouter.get('/:id/comments', async (req, res) => {
+	await handleComments.getReviewComments(req, res, ProfessorReview);
+});
+
+// POST a comment to a review
+professorReviewsRouter.post('/:id/comments', async (req, res) => {
+	await handleComments.postReviewComment(req, res, ProfessorReview);
+});
+
+// UPDATE a comment to a review
+professorReviewsRouter.put('/:id/comments/:commentId', async (req, res) => {
+	await handleComments.updateReviewComment(req, res, ProfessorReview);
+});
+
+// DELETE a comment from a review
+professorReviewsRouter.delete('/:id/comments/:commentId', async (req, res) => {
+	await handleComments.deleteReviewComment(req, res, ProfessorReview);
 });
 
 module.exports = professorReviewsRouter;
