@@ -13,7 +13,7 @@ const courseSchema = new mongoose.Schema({
 	faculty: String,
 	professor: String,
 	avgRating: Number,
-  units: Number,
+	units: Number,
 	reviews: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
