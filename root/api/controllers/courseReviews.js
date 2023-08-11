@@ -1,8 +1,6 @@
 const courseReviewsRouter = require('express').Router();
 const CourseReview = require('../models/courseReview');
-const User = require('../models/user');
 const Course = require('../models/course');
-const jwt = require('jsonwebtoken');
 
 // Get all reviews from all courses
 courseReviewsRouter.get('/', async (req, res) => {
@@ -68,11 +66,11 @@ courseReviewsRouter.post('/', async (req, res) => {
 
 	const savedCourseReview = await createdCourseReview.save();
 
-	// Update the user's courseReviews array
+	// Append specified review to the user's courseReviews array collection
 	user.courseReviews = user.courseReviews.concat(savedCourseReview._id);
 	await user.save();
 
-	// Add the review to the course's reviews array collection
+	// Append the review to the course's reviews array collection
 	await Course.findByIdAndUpdate(createdCourseReview.course, {
 		$push: { reviews: createdCourseReview._id },
 	});

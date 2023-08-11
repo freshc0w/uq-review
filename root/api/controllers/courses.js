@@ -60,7 +60,7 @@ coursesRouter.put('/:id', async (req, res) => {
 		title: body.title,
 		url: body.url,
 		faculty: body.faculty,
-		professor: body.professor, // TODO: Logic of finding a professor id from the name (handled at frontend?)
+		professor: body.professor,
 		avgRating: body.avgRating,
 		units: body.units,
 	};
