@@ -3,14 +3,29 @@ const { v4: uuidv4 } = require('uuid');
 const Course = require('../models/course');
 
 coursesRouter.get('/', async (req, res) => {
-	const courses = await Course.find({}).populate('reviews').populate('reviews', {
-    // TODO: populate reviews info
-  });
+	const courses = await Course.find({}).populate('reviews', {
+		title: 1,
+		content: 1,
+		rating: 1,
+		date: 1,
+		semester: 1,
+		likes: 1,
+		dislikes: 1,
+		reports: 1,
+	});
 	res.json(courses);
 });
 
 coursesRouter.get('/:id', async (req, res) => {
-	const course = await Course.findById(req.params.id);
+	const course = await Course.findById(req.params.id).populate('reviews', {
+		title: 1,
+		content: 1,
+		date: 1,
+		semester: 1,
+		likes: 1,
+		dislikes: 1,
+		reports: 1,
+	});
 	if (course) {
 		res.json(course);
 	} else {

@@ -4,13 +4,39 @@ const Professor = require('../models/professor');
 const Course = require('../models/course');
 
 professorsRouter.get('/', async (req, res) => {
-	const professors = await Professor.find({});
+	const professors = await Professor.find({})
+		.populate('user', {
+			username: 1,
+			name: 1,
+		})
+		.populate('reviews', {
+			title: 1,
+			content: 1,
+			rating: 1,
+			date: 1,
+			semester: 1,
+			likes: 1,
+			dislikes: 1,
+			reports: 1,
+		});
 
 	res.json(professors);
 });
 
 professorsRouter.get('/:id', async (req, res) => {
-	const professor = await Professor.findById(req.params.id);
+	const professor = await Professor.findById(req.params.id).populate(
+		'reviews',
+		{
+			title: 1,
+			content: 1,
+			rating: 1,
+			date: 1,
+			semester: 1,
+			likes: 1,
+			dislikes: 1,
+			reports: 1,
+		}
+	);
 	professor ? res.json(professor) : res.status(404).end();
 });
 

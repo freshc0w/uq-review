@@ -72,7 +72,7 @@ courseReviewsRouter.post('/', async (req, res) => {
 	user.courseReviews = user.courseReviews.concat(savedCourseReview._id);
 	await user.save();
 
-	// Add the review to the course's reviews array
+	// Add the review to the course's reviews array collection
 	await Course.findByIdAndUpdate(createdCourseReview.course, {
 		$push: { reviews: createdCourseReview._id },
 	});

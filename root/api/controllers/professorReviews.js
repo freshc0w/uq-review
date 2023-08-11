@@ -78,6 +78,11 @@ professorReviewsRouter.post('/', async (req, res) => {
 	);
 	await user.save();
 
+	// Add the review to the professor's reviews array collection
+	await Professor.findByIdAndUpdate(body.professor, {
+		$push: { reviews: savedProfessorReview._id },
+	});
+
 	res.json(savedProfessorReview);
 });
 
