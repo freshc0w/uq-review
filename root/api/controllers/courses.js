@@ -77,40 +77,9 @@ coursesRouter.delete('/:id', async (req, res) => {
 
 // Dealing with reviews.
 coursesRouter.get('/:id/reviews', async (req, res) => {
-	const course = await Course.findById(req.params.id);
+	const course = await Course.findById(req.params.id).populate('reviews', {});
 
 	course ? res.json(course.reviews) : res.status(404).end();
-});
-
-coursesRouter.post('/:id/reviews', async (req, res) => {
-	const body = req.body;
-	const review = body.review;
-	const foundCourse = await Course.findById(req.params.id);
-
-	const updatedCourse = {
-		...foundCourse._doc,
-		comments: !foundCourse.comments
-			? [{ review, id: uuidv4() }]
-			: [...foundCourse.comments, { review, id: uuidv4() }],
-	};
-
-	await Course.findByIdAndUpdate(req.params.id, updatedCourse, { new: true });
-});
-
-// Deletes the review with the given id ONLY for the specified course.
-coursesRouter.delete('/:id/reviews/:reviewId', async (req, res) => {
-	const foundCourse = await Course.findById(req.params.id);
-
-	const updatedCourse = {
-		...foundCourse._doc,
-		reviews: foundCourse.reviews.filter(
-			review => review.id !== req.params.reviewId
-		),
-	};
-
-	await Course.findByIdAndUpdate(req.params.id, updatedCourse, { new: true });
-
-	res.json(updatedCourse);
 });
 
 module.exports = coursesRouter;
