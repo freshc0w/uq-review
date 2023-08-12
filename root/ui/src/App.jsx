@@ -6,25 +6,25 @@
 // user
 // login
 import { useEffect } from 'react';
-import userServices from './services/users';
-import courseServices from './services/courses';
-import professorServices from './services/professors';
+import usersServices from './services/users';
+import coursesServices from './services/courses';
+import professorsServices from './services/professors';
 
 // Components
 import LoginForm from './components/LoginForm';
 
 const getUserData = async () => {
-	const response = await userServices.getAll();
+	const response = await usersServices.getAll();
 	console.log(response);
 };
 
 const getCourseData = async () => {
-	const response = await courseServices.getAll();
+	const response = await coursesServices.getAll();
 	console.log(response);
 };
 
 const getProfessorData = async () => {
-	const response = await professorServices.getAll();
+	const response = await professorsServices.getAll();
 	console.log(response);
 };
 
