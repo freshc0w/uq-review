@@ -5,10 +5,6 @@ const Course = require('../models/course');
 
 professorsRouter.get('/', async (req, res) => {
 	const professors = await Professor.find({})
-		.populate('user', {
-			username: 1,
-			name: 1,
-		})
 		.populate('reviews', {
 			title: 1,
 			content: 1,
