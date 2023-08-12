@@ -8,6 +8,7 @@
 import { useEffect } from 'react';
 import userServices from './services/users';
 import courseServices from './services/courses';
+import professorServices from './services/professors';
 
 const getUserData = async () => {
   const response = await userServices.getAll();
@@ -19,12 +20,18 @@ const getCourseData = async () => {
   console.log(response);
 }
 
+const getProfessorData = async () => {
+  const response = await professorServices.getAll();
+  console.log(response);
+}
+
 const App = () => {
 
   useEffect(() => {
     console.log('App initialised');
     getUserData();
     getCourseData();
+    getProfessorData();
   }, [])
 
   return <>App initialised</>
