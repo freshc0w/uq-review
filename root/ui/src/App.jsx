@@ -5,11 +5,17 @@
 // professors
 // user
 // login
-import usersServices from './services/users';
 import { useEffect } from 'react';
+import userServices from './services/users';
+import courseServices from './services/courses';
 
 const getUserData = async () => {
-  const response = await usersServices.getAll();
+  const response = await userServices.getAll();
+  console.log(response);
+}
+
+const getCourseData = async () => {
+  const response = await courseServices.getAll();
   console.log(response);
 }
 
@@ -18,6 +24,7 @@ const App = () => {
   useEffect(() => {
     console.log('App initialised');
     getUserData();
+    getCourseData();
   }, [])
 
   return <>App initialised</>
