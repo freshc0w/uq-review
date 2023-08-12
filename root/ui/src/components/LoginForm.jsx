@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../reducers/userReducer';
 
 import loginService from '../services/login';
+import courseReviewServices from '../services/courseReviews';
 
 const LoginForm = () => {
 	const [username, setUsername] = useState('');
@@ -11,6 +12,7 @@ const LoginForm = () => {
 
 	const dispatch = useDispatch();
 
+  // Firstly, we check if the user is already logged in.
 	useEffect(() => {
 		const loggedUserJSON = window.localStorage.getItem('loggedUser');
 		if (loggedUserJSON) {
@@ -18,6 +20,7 @@ const LoginForm = () => {
 			dispatch(setUser(user));
 
 			// TODO: set token for course reviews and professor reviews
+      courseReviewServices.setToken(user.token);
 		}
 	}, [dispatch]);
 
@@ -33,6 +36,7 @@ const LoginForm = () => {
 			window.localStorage.setItem('loggedUser', JSON.stringify(user));
 
 			// TODO: set token for course reviews and professor reviews
+      courseReviewServices.setToken(user.token);
 
 			dispatch(setUser(user));
 
