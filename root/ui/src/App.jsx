@@ -6,12 +6,58 @@
 // user
 // login
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import usersServices from './services/users';
 import coursesServices from './services/courses';
 import professorsServices from './services/professors';
+import courseReviewsServices from './services/courseReviews';
+
+// reducers
+import {
+	initialiseCourseReviews,
+	createCourseReview,
+	removeCourseReview,
+} from './reducers/courseReviewsReducer';
+import { setUser } from './reducers/userReducer';
 
 // Components
 import LoginForm from './components/LoginForm';
+
+const CourseReviewsList = () => {
+	const dispatch = useDispatch();
+	const courseReviews = useSelector(({ courseReviews }) => courseReviews);
+
+	useEffect(() => {
+		dispatch(initialiseCourseReviews());
+		console.log(courseReviews);
+	}, [dispatch]);
+
+	return (
+		<>
+			<h2>CourseReviews</h2>
+			<ul>
+				{console.log(courseReviews)}
+				{[...courseReviews].map(courseReview => (
+					<li key={courseReview.id}>
+						<strong>{courseReview.title}</strong>: {courseReview.content}
+					</li>
+				))}
+			</ul>
+		</>
+	);
+};
+
+const LogOutButton = () => {
+	const dispatch = useDispatch();
+
+	const handleLogout = () => {
+		window.localStorage.removeItem('loggedUser');
+		dispatch(setUser(null));
+	};
+
+	return <button onClick={handleLogout}>Logout</button>;
+};
 
 const getUserData = async () => {
 	const response = await usersServices.getAll();
@@ -28,17 +74,26 @@ const getProfessorData = async () => {
 	console.log(response);
 };
 
+const getCourseReviewData = async () => {
+	const response = await courseReviewsServices.getAll();
+	console.log(response);
+};
+
 const App = () => {
+	const user = useSelector(({ user }) => user);
+
 	useEffect(() => {
 		console.log('App initialised');
 		getUserData();
 		getCourseData();
 		getProfessorData();
+		getCourseReviewData();
 	}, []);
 
 	return (
 		<>
-			<LoginForm />
+    {!user ? <LoginForm /> : <LogOutButton />}
+			<CourseReviewsList />
 		</>
 	);
 };

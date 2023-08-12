@@ -6,17 +6,6 @@ import { setUser } from '../reducers/userReducer';
 import loginService from '../services/login';
 import courseReviewServices from '../services/courseReviews';
 
-const LogOutButton = () => {
-	const dispatch = useDispatch();
-
-	const handleLogout = () => {
-		window.localStorage.removeItem('loggedUser');
-		dispatch(setUser(null));
-	};
-
-	return <button onClick={handleLogout}>Logout</button>;
-};
-
 const LoginForm = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -81,7 +70,6 @@ const LoginForm = () => {
 				</div>
 				<button type="submit">login</button>
 			</form>
-			<LogOutButton />
 		</>
 	);
 };

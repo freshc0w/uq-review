@@ -41,6 +41,8 @@ export const createCourseReview = newCourseReviewObj => {
 	};
 };
 
+// TODO: Updates a course review based on the id
+
 export const removeCourseReview = id => {
 	return async dispatch => {
 		const courseReviews = await courseReviewsServices.getAll();
