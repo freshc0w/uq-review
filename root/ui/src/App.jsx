@@ -16,6 +16,7 @@ const getUserData = async () => {
 const App = () => {
 
   useEffect(() => {
+    console.log('App initialised');
     getUserData();
   }, [])
 
