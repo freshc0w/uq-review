@@ -31,6 +31,7 @@ module.exports = {
 		'no-unused-vars': 'warn',
 		'no-tabs': 0,
 		'comma-dangle': 0,
+    curly: 0,
 		semi: 0,
 	},
 };
