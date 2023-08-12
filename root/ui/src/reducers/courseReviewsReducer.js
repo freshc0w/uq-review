@@ -22,4 +22,31 @@ const courseReviewsSlice = createSlice({
 	},
 });
 
-export const { setCourseReviews, appendCourseReviews, updateCourseReviews } = courseReviewsSlice.actions;
+export const { setCourseReviews, appendCourseReviews, updateCourseReviews } =
+	courseReviewsSlice.actions;
+
+export const initialiseCourseReviews = () => {
+	return async dispatch => {
+		const courseReviews = await courseReviewsServices.getAll();
+		dispatch(setCourseReviews(courseReviews));
+	};
+};
+
+export const createCourseReview = newCourseReviewObj => {
+	return async dispatch => {
+		const newCourseReview = await courseReviewsServices.create(
+			newCourseReviewObj
+		);
+		dispatch(appendCourseReviews(newCourseReview));
+	};
+};
+
+export const removeCourseReview = id => {
+	return async dispatch => {
+		const courseReviews = await courseReviewsServices.getAll();
+		await courseReviewsServices.removeCourseReview(id);
+		dispatch(setCourseReviews(courseReviews.filter(cr => cr.id !== id)));
+	};
+};
+
+export default courseReviewsSlice.reducer;
