@@ -73,7 +73,7 @@ professorsRouter.put('/:id', async (req, res) => {
 		// TODO: reviews: body.reviews, (?) Should we allow this?
 	};
 
-	await Professor.findByIdAndUpdate(req.params.id, professor, { new: true });
+	const updatedProfessor = await Professor.findByIdAndUpdate(req.params.id, professor, { new: true });
 
 	res.json(updatedProfessor);
 });
