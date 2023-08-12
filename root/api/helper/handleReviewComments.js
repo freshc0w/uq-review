@@ -39,6 +39,13 @@ const updateReviewComment = async (req, res, model) => {
 
 	if (!review) return res.status(404).end();
 
+	// Find the targeted comment and check if it is made by user. If not, return 401 unauthorized
+	const targetedComment = review.comments.find(
+		c => c.id === req.params.commentId && c.user === user.id
+	);
+
+	if (!targetedComment) return res.status(401).end();
+
 	const updatedReview = {
 		...review._doc,
 		comments: review.comments.map(c =>
