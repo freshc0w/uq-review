@@ -6,13 +6,24 @@ import { setUser } from '../reducers/userReducer';
 import loginService from '../services/login';
 import courseReviewServices from '../services/courseReviews';
 
+const LogOutButton = () => {
+	const dispatch = useDispatch();
+
+	const handleLogout = () => {
+		window.localStorage.removeItem('loggedUser');
+		dispatch(setUser(null));
+	};
+
+	return <button onClick={handleLogout}>Logout</button>;
+};
+
 const LoginForm = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
 	const dispatch = useDispatch();
 
-  // Firstly, we check if the user is already logged in.
+	// Firstly, we check if the user is already logged in.
 	useEffect(() => {
 		const loggedUserJSON = window.localStorage.getItem('loggedUser');
 		if (loggedUserJSON) {
@@ -20,7 +31,7 @@ const LoginForm = () => {
 			dispatch(setUser(user));
 
 			// TODO: set token for course reviews and professor reviews
-      courseReviewServices.setToken(user.token);
+			courseReviewServices.setToken(user.token);
 		}
 	}, [dispatch]);
 
@@ -36,7 +47,7 @@ const LoginForm = () => {
 			window.localStorage.setItem('loggedUser', JSON.stringify(user));
 
 			// TODO: set token for course reviews and professor reviews
-      courseReviewServices.setToken(user.token);
+			courseReviewServices.setToken(user.token);
 
 			dispatch(setUser(user));
 
@@ -48,27 +59,30 @@ const LoginForm = () => {
 	};
 
 	return (
-		<form onSubmit={handleLogin}>
-			<div>
-				username
-				<input
-					type="text"
-					value={username}
-					name="Username"
-					onChange={({ target }) => setUsername(target.value)}
-				/>
-			</div>
-			<div>
-				password
-				<input
-					type="password"
-					value={password}
-					name="Password"
-					onChange={({ target }) => setPassword(target.value)}
-				/>
-			</div>
-			<button type="submit">login</button>
-		</form>
+		<>
+			<form onSubmit={handleLogin}>
+				<div>
+					username
+					<input
+						type="text"
+						value={username}
+						name="Username"
+						onChange={({ target }) => setUsername(target.value)}
+					/>
+				</div>
+				<div>
+					password
+					<input
+						type="password"
+						value={password}
+						name="Password"
+						onChange={({ target }) => setPassword(target.value)}
+					/>
+				</div>
+				<button type="submit">login</button>
+			</form>
+			<LogOutButton />
+		</>
 	);
 };
 
