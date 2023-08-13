@@ -30,14 +30,12 @@ const CourseReviewsList = () => {
 
 	useEffect(() => {
 		dispatch(initialiseCourseReviews());
-		console.log(courseReviews);
 	}, [dispatch]);
 
 	return (
 		<>
 			<h2>CourseReviews</h2>
 			<ul>
-				{console.log(courseReviews)}
 				{[...courseReviews].map(courseReview => (
 					<li key={courseReview.id}>
 						<strong>{courseReview.title}</strong>: {courseReview.content}
