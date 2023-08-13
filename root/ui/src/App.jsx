@@ -19,6 +19,11 @@ import {
 	createCourseReview,
 	removeCourseReview,
 } from './reducers/courseReviewsReducer';
+import {
+	initialiseProfessorReviews,
+	createProfessorReview,
+	removeProfessorReview,
+} from './reducers/professorReviewsReducer';
 import { setUser } from './reducers/userReducer';
 
 // Components
@@ -39,6 +44,30 @@ const CourseReviewsList = () => {
 				{[...courseReviews].map(courseReview => (
 					<li key={courseReview.id}>
 						<strong>{courseReview.title}</strong>: {courseReview.content}
+					</li>
+				))}
+			</ul>
+		</>
+	);
+};
+
+const ProfessorReviewsList = () => {
+	const dispatch = useDispatch();
+	const professorReviews = useSelector(
+		({ professorReviews }) => professorReviews
+	);
+
+	useEffect(() => {
+		dispatch(initialiseProfessorReviews());
+	}, [dispatch]);
+
+	return (
+		<>
+			<h2>ProfessorReviews</h2>
+			<ul>
+				{[...professorReviews].map(professorReview => (
+					<li key={professorReview.id}>
+						<strong>{professorReview.title}</strong>: {professorReview.content}
 					</li>
 				))}
 			</ul>
@@ -90,8 +119,9 @@ const App = () => {
 
 	return (
 		<>
-    {!user ? <LoginForm /> : <LogOutButton />}
+			{!user ? <LoginForm /> : <LogOutButton />}
 			<CourseReviewsList />
+      <ProfessorReviewsList />
 		</>
 	);
 };
