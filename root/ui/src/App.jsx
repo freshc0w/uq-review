@@ -15,11 +15,6 @@ import courseReviewsServices from './services/courseReviews';
 
 // reducers
 import {
-	initialiseCourseReviews,
-	createCourseReview,
-	removeCourseReview,
-} from './reducers/courseReviewsReducer';
-import {
 	initialiseProfessorReviews,
 	createProfessorReview,
 	removeProfessorReview,
@@ -28,52 +23,8 @@ import { setUser } from './reducers/userReducer';
 
 // Components
 import LoginForm from './components/LoginForm';
-
-const CourseReviewsList = () => {
-	const dispatch = useDispatch();
-	const courseReviews = useSelector(({ courseReviews }) => courseReviews);
-
-	useEffect(() => {
-		dispatch(initialiseCourseReviews());
-	}, [dispatch]);
-
-	return (
-		<>
-			<h2>CourseReviews</h2>
-			<ul>
-				{[...courseReviews].map(courseReview => (
-					<li key={courseReview.id}>
-						<strong>{courseReview.title}</strong>: {courseReview.content}
-					</li>
-				))}
-			</ul>
-		</>
-	);
-};
-
-const ProfessorReviewsList = () => {
-	const dispatch = useDispatch();
-	const professorReviews = useSelector(
-		({ professorReviews }) => professorReviews
-	);
-
-	useEffect(() => {
-		dispatch(initialiseProfessorReviews());
-	}, [dispatch]);
-
-	return (
-		<>
-			<h2>ProfessorReviews</h2>
-			<ul>
-				{[...professorReviews].map(professorReview => (
-					<li key={professorReview.id}>
-						<strong>{professorReview.title}</strong>: {professorReview.content}
-					</li>
-				))}
-			</ul>
-		</>
-	);
-};
+import CourseReviewsList from './components/CourseReviewsList';
+import ProfessorReviewsList from './components/ProfessorReviewsList';
 
 const LogOutButton = () => {
 	const dispatch = useDispatch();
