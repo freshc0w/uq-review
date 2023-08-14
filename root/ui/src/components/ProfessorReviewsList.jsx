@@ -6,13 +6,15 @@ import {
 	removeProfessorReview,
 } from '../reducers/professorReviewsReducer';
 
+import ProfessorReviewDisplay from './ProfessorReviewDisplay';
+
 const ProfessorReviewsList = () => {
 	const dispatch = useDispatch();
 	const professorReviews = useSelector(
 		({ professorReviews }) => professorReviews
 	);
 
-  // TODO: handle adding, removing and updating professor reviews
+	// TODO: handle adding, removing and updating professor reviews
 	useEffect(() => {
 		dispatch(initialiseProfessorReviews());
 	}, [dispatch]);
@@ -22,9 +24,10 @@ const ProfessorReviewsList = () => {
 			<h2>ProfessorReviews</h2>
 			<ul>
 				{[...professorReviews].map(professorReview => (
-					<li key={professorReview.id}>
-						<strong>{professorReview.title}</strong>: {professorReview.content}
-					</li>
+					<ProfessorReviewDisplay
+						key={professorReview.id}
+						professorReview={professorReview}
+					/>
 				))}
 			</ul>
 		</>
@@ -32,4 +35,3 @@ const ProfessorReviewsList = () => {
 };
 
 export default ProfessorReviewsList;
-

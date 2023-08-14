@@ -5,6 +5,7 @@ import {
 	createCourseReview,
 	removeCourseReview,
 } from '../reducers/courseReviewsReducer';
+import CourseReviewDisplay from './CourseReviewDisplay';
 
 const CourseReviewsList = () => {
   const dispatch = useDispatch();
@@ -20,9 +21,7 @@ const CourseReviewsList = () => {
       <h2>CourseReviews</h2>
       <ul>
         {[...courseReviews].map(courseReview => (
-          <li key={courseReview.id}>
-            <strong>{courseReview.title}</strong>: {courseReview.content}
-          </li>
+          <CourseReviewDisplay key={courseReview.id} courseReview={courseReview} />
         ))}
       </ul>
     </>

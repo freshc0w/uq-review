@@ -52,7 +52,6 @@ const LoginForm = () => {
 	return (
 		<>
 			<form onSubmit={handleLogin}>
-        // * Simplify with a custom hook
 				<div>
 					username
 					<input
