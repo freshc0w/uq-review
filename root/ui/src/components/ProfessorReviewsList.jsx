@@ -12,6 +12,7 @@ const ProfessorReviewsList = () => {
 		({ professorReviews }) => professorReviews
 	);
 
+  // TODO: handle adding, removing and updating professor reviews
 	useEffect(() => {
 		dispatch(initialiseProfessorReviews());
 	}, [dispatch]);

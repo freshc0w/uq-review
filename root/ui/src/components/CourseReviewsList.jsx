@@ -10,6 +10,7 @@ const CourseReviewsList = () => {
   const dispatch = useDispatch();
   const courseReviews = useSelector(({ courseReviews }) => courseReviews);
 
+  // TODO: handle adding, removing and updating course reviews
   useEffect(() => {
     dispatch(initialiseCourseReviews());
   }, [dispatch]);
