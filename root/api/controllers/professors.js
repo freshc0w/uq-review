@@ -4,17 +4,7 @@ const Professor = require('../models/professor');
 const Course = require('../models/course');
 
 professorsRouter.get('/', async (req, res) => {
-	const professors = await Professor.find({})
-		.populate('reviews', {
-			title: 1,
-			content: 1,
-			rating: 1,
-			date: 1,
-			semester: 1,
-			likes: 1,
-			dislikes: 1,
-			reports: 1,
-		});
+	const professors = await Professor.find({}).populate('reviews', {});
 
 	res.json(professors);
 });
@@ -22,16 +12,7 @@ professorsRouter.get('/', async (req, res) => {
 professorsRouter.get('/:id', async (req, res) => {
 	const professor = await Professor.findById(req.params.id).populate(
 		'reviews',
-		{
-			title: 1,
-			content: 1,
-			rating: 1,
-			date: 1,
-			semester: 1,
-			likes: 1,
-			dislikes: 1,
-			reports: 1,
-		}
+		{}
 	);
 	professor ? res.json(professor) : res.status(404).end();
 });
@@ -73,7 +54,11 @@ professorsRouter.put('/:id', async (req, res) => {
 		// TODO: reviews: body.reviews, (?) Should we allow this?
 	};
 
-	const updatedProfessor = await Professor.findByIdAndUpdate(req.params.id, professor, { new: true });
+	const updatedProfessor = await Professor.findByIdAndUpdate(
+		req.params.id,
+		professor,
+		{ new: true }
+	);
 
 	res.json(updatedProfessor);
 });
