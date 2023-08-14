@@ -1,6 +1,6 @@
 import { useState, forwardRef, useImperativeHandle } from 'react';
 
-// * Assumes that there will be a props.buttonLabel
+// * NOTE: Assumes that there will be a props.buttonLabel
 const Togglable = forwardRef((props, refs) => {
 	const [visible, setVisible] = useState(false);
 
