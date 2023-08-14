@@ -1,6 +1,7 @@
 import './CourseListPage.css'; // For middle text-alignment
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
 	initialiseCourses,
 	createCourse,
@@ -36,7 +37,7 @@ const CourseListPage = () => {
         </thead>
         <tbody>
           {[...courses].map(course => (
-            <CourseInfo key={course.id} course={course} />
+              <CourseInfo key={course.id} course={course} />
           ))}
         </tbody>
       </table>

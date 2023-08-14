@@ -2,3 +2,11 @@ td {
   text-align: center;
   padding: 0.5rem;
 }
+
+tr {
+  transition: 0.3s;
+}
+
+tr:hover {
+  background-color: azure;
+}
