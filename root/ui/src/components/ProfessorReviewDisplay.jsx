@@ -93,8 +93,12 @@ const ProfessorReviewDisplay = ({ professorReview }) => {
 				/>
 			))}
 			<Line
-				label="User"
+				label="UserName"
 				content={user.username}
+			/>
+			<Line
+				label="Author name"
+				content={user.name}
 			/>
 			<Line
 				label="Professor"
