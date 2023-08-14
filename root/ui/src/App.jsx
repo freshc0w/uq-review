@@ -70,8 +70,6 @@ const App = () => {
 					/>
 				</Routes>
 			</Router>
-			<CourseReviewsList />
-			<ProfessorReviewsList />
 		</>
 	);
 };

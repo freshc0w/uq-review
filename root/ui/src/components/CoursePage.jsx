@@ -7,19 +7,21 @@ import {
 	removeCourse,
 } from '../reducers/coursesReducer';
 
+import CourseReviewsList from './CourseReviewsList';
+
 // Assumes there is a course with the given id in the params.
 const CoursePage = () => {
-	const id = useParams().id;
 	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(initialiseCourses());
+	}, [dispatch]);
+
+	const id = useParams().id;
 	const courses = useSelector(({ courses }) => courses);
 	const course = courses.find(course => course.id === id);
 
 	// If no course is found return null.
 	if (!course) return null;
-
-	useEffect(() => {
-		dispatch(initialiseCourses());
-	}, [dispatch]);
 
 	console.log(course.reviews);
 
@@ -37,16 +39,7 @@ const CoursePage = () => {
 			<p>Professor: {course.professor}</p>
 			<p>Reviews: {course.reviews.length}</p>
 			<h2>Reviews:</h2>
-			<ul>
-				{course.reviews.map(review => (
-					<li key={review.id}>
-						<p>Title: {review.title}</p>
-						<p>Content: {review.content}</p>
-						<p>Rating: {review.rating}</p>
-						<p>Comment: {review.comment}</p>
-					</li>
-				))}
-			</ul>
+			<CourseReviewsList />
 			<Link to="/courses">Back to Course List</Link>
 		</div>
 	);
