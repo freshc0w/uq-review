@@ -19,6 +19,7 @@ const CourseListPage = () => {
 	}, [dispatch]);
 
   // TODO: add more info in the table
+  // TODO: add a link to the course's reviews
 	return (
 		<div>
 			<h1>Course List</h1>
@@ -35,8 +36,7 @@ const CourseListPage = () => {
         </thead>
         <tbody>
           {[...courses].map(course => (
-            <CourseInfo key={course.id} course={course}>
-            </CourseInfo>
+            <CourseInfo key={course.id} course={course} />
           ))}
         </tbody>
       </table>
