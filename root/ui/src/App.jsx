@@ -7,6 +7,7 @@
 // login
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import usersServices from './services/users';
 import coursesServices from './services/courses';
@@ -37,35 +38,11 @@ const LogOutButton = () => {
 	return <button onClick={handleLogout}>Logout</button>;
 };
 
-const getUserData = async () => {
-	const response = await usersServices.getAll();
-	console.log(response);
-};
-
-const getCourseData = async () => {
-	const response = await coursesServices.getAll();
-	console.log(response);
-};
-
-const getProfessorData = async () => {
-	const response = await professorsServices.getAll();
-	console.log(response);
-};
-
-const getCourseReviewData = async () => {
-	const response = await courseReviewsServices.getAll();
-	console.log(response);
-};
-
 const App = () => {
 	const user = useSelector(({ user }) => user);
 
 	useEffect(() => {
 		console.log('App initialised');
-		getUserData();
-		getCourseData();
-		getProfessorData();
-		getCourseReviewData();
 	}, []);
 
 	return (
