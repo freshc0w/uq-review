@@ -10,9 +10,9 @@ const Line = ({ label, content }) => {
 	);
 };
 
-const ProfessorReviewDisplay = ({professorReview}) => {
-  console.log(professorReview)
-  const {
+const ProfessorReviewDisplay = ({ professorReview }) => {
+	console.log(professorReview);
+	const {
 		title,
 		rating,
 		content,
@@ -86,10 +86,13 @@ const ProfessorReviewDisplay = ({professorReview}) => {
 				label="Cons"
 				content={cons}
 			/>
-			<Line
-				label="Courses Taken"
-				content={coursesTaken.code}
-			/>
+			{coursesTaken.map(ct => (
+				<Line
+					key={ct.id}
+					label="Course Taken"
+					content={ct.code}
+				/>
+			))}
 			<Line
 				label="User"
 				content={user.username}
@@ -98,9 +101,15 @@ const ProfessorReviewDisplay = ({professorReview}) => {
 				label="Professor"
 				content={professor.name}
 			/>
-			{comments.map(c => <Line key={c.id} label="Comment" content={c.comment} />)}
+			{comments.map(c => (
+				<Line
+					key={c.id}
+					label="Comment"
+					content={c.comment}
+				/>
+			))}
 		</li>
 	);
-}
+};
 
 export default ProfessorReviewDisplay;
