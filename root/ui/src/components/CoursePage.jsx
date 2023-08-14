@@ -23,8 +23,6 @@ const CoursePage = () => {
 	// If no course is found return null.
 	if (!course) return null;
 
-	console.log(course.reviews);
-
 	// TODO: handle the CRUD of the course's reviews
 
 	return (

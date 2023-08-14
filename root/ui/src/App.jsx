@@ -27,9 +27,8 @@ import TempNav from './components/TempNav';
 import LoginForm from './components/LoginForm';
 import CourseListPage from './components/CourseListPage';
 import ProfessorListPage from './components/ProfessorListPage';
-import CourseReviewsList from './components/CourseReviewsList';
-import ProfessorReviewsList from './components/ProfessorReviewsList';
 import CoursePage from './components/CoursePage';
+import ProfessorPage from './components/ProfessorPage';
 
 const LogOutButton = () => {
 	const dispatch = useDispatch();
@@ -67,6 +66,10 @@ const App = () => {
 					<Route
 						path="/courses/:id"
 						element={<CoursePage />}
+					/>
+					<Route
+						path="/professors/:id"
+						element={<ProfessorPage />}
 					/>
 				</Routes>
 			</Router>
