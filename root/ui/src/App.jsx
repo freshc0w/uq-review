@@ -25,6 +25,8 @@ import { setUser } from './reducers/userReducer';
 // Components
 import TempNav from './components/TempNav';
 import LoginForm from './components/LoginForm';
+import CourseListPage from './components/CourseListPage';
+import ProfessorListPage from './components/ProfessorListPage';
 import CourseReviewsList from './components/CourseReviewsList';
 import ProfessorReviewsList from './components/ProfessorReviewsList';
 
@@ -45,13 +47,26 @@ const App = () => {
 	useEffect(() => {
 		console.log('App initialised');
 	}, []);
+  console.log('user logged in:', user);
 
 	return (
-		<>
-      <TempNav />
-			{!user ? <LoginForm /> : <LogOutButton />}
+    <>
+			<Router>
+				<TempNav />
+				{!user ? <LoginForm /> : <LogOutButton />}
+				<Routes>
+					<Route
+						path="/courses"
+						element={<CourseListPage />}
+					/>
+					<Route
+						path="/professors"
+						element={<ProfessorListPage />}
+					/>
+				</Routes>
+			</Router>
 			<CourseReviewsList />
-      <ProfessorReviewsList />
+			<ProfessorReviewsList />
 		</>
 	);
 };
