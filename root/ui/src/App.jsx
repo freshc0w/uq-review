@@ -29,6 +29,7 @@ import CourseListPage from './components/CourseListPage';
 import ProfessorListPage from './components/ProfessorListPage';
 import CourseReviewsList from './components/CourseReviewsList';
 import ProfessorReviewsList from './components/ProfessorReviewsList';
+import CoursePage from './components/CoursePage';
 
 const LogOutButton = () => {
 	const dispatch = useDispatch();
@@ -47,10 +48,10 @@ const App = () => {
 	useEffect(() => {
 		console.log('App initialised');
 	}, []);
-  console.log('user logged in:', user);
+	console.log('user logged in:', user);
 
 	return (
-    <>
+		<>
 			<Router>
 				<TempNav />
 				{!user ? <LoginForm /> : <LogOutButton />}
@@ -62,6 +63,10 @@ const App = () => {
 					<Route
 						path="/professors"
 						element={<ProfessorListPage />}
+					/>
+					<Route
+						path="/courses/:id"
+						element={<CoursePage />}
 					/>
 				</Routes>
 			</Router>

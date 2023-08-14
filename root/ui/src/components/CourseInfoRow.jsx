@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Td from './Td'; // helper that wraps content into a Link if a link is provided
 
-const CourseInfo = ({ course }) => {
+const CourseInfoRow = ({ course }) => {
 	const navigate = useNavigate();
 	const { code, title, avgRating, faculty, professor, reviews } = course;
 
@@ -33,4 +33,4 @@ const CourseInfo = ({ course }) => {
 	);
 };
 
-export default CourseInfo;
+export default CourseInfoRow;

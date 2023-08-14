@@ -6,7 +6,7 @@ import {
 	createProfessor,
 	removeProfessor,
 } from '../reducers/professorsReducer';
-import ProfessorInfo from './ProfessorInfo';
+import ProfessorInfoRow from './ProfessorInfoRow';
 
 const ProfessorListPage = () => {
 	const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const ProfessorListPage = () => {
 	console.log(professors);
 
 	// TODO: add more info in the table
-  // TODO: add a link to the professor's reviews
+	// TODO: add a link to the professor's reviews
 	return (
 		<div>
 			<h1>ProfessorListPage</h1>
@@ -31,12 +31,12 @@ const ProfessorListPage = () => {
 						<th>Average Rating</th>
 						<th>Faculty</th>
 						<th>Reviews</th>
-            <th>Courses taught</th>
+						<th>Courses taught</th>
 					</tr>
 				</thead>
 				<tbody>
 					{[...professors].map(professor => (
-						<ProfessorInfo
+						<ProfessorInfoRow
 							key={professor.id}
 							professor={professor}
 						/>

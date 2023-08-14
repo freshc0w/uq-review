@@ -8,7 +8,7 @@ import {
 	removeCourse,
 } from '../reducers/coursesReducer';
 
-import CourseInfo from './CourseInfo';
+import CourseInfoRow from './CourseInfoRow';
 
 const CourseListPage = () => {
 	const dispatch = useDispatch();
@@ -19,28 +19,31 @@ const CourseListPage = () => {
 		dispatch(initialiseCourses());
 	}, [dispatch]);
 
-  // TODO: add more info in the table
-  // TODO: add a link to the course's reviews
+	// TODO: add more info in the table
+	// TODO: add a link to the course's reviews
 	return (
 		<div>
 			<h1>Course List</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Course Code</th>
-            <th>Course Title</th>
-            <th>Average Rating</th>
-            <th>Faculty</th>
-            <th>Professor</th>
-            <th>Reviews</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[...courses].map(course => (
-              <CourseInfo key={course.id} course={course} />
-          ))}
-        </tbody>
-      </table>
+			<table>
+				<thead>
+					<tr>
+						<th>Course Code</th>
+						<th>Course Title</th>
+						<th>Average Rating</th>
+						<th>Faculty</th>
+						<th>Professor</th>
+						<th>Reviews</th>
+					</tr>
+				</thead>
+				<tbody>
+					{[...courses].map(course => (
+						<CourseInfoRow
+							key={course.id}
+							course={course}
+						/>
+					))}
+				</tbody>
+			</table>
 		</div>
 	);
 };
