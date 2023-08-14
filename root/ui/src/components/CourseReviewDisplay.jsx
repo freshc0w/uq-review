@@ -11,7 +11,6 @@ const Line = ({ label, content }) => {
 };
 
 const CourseReviewDisplay = ({ courseReview }) => {
-  console.log(courseReview)
   const {
 		title, 
     rating,

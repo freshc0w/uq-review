@@ -23,6 +23,7 @@ import {
 import { setUser } from './reducers/userReducer';
 
 // Components
+import TempNav from './components/TempNav';
 import LoginForm from './components/LoginForm';
 import CourseReviewsList from './components/CourseReviewsList';
 import ProfessorReviewsList from './components/ProfessorReviewsList';
@@ -47,6 +48,7 @@ const App = () => {
 
 	return (
 		<>
+      <TempNav />
 			{!user ? <LoginForm /> : <LogOutButton />}
 			<CourseReviewsList />
       <ProfessorReviewsList />
