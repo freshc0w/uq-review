@@ -7,6 +7,7 @@ import {
 	removeCourse,
 } from '../reducers/coursesReducer';
 
+import CourseReviewForm from './CourseReviewForm';
 import CourseReviewsList from './CourseReviewsList';
 
 // Assumes there is a course with the given id in the params.
@@ -36,6 +37,8 @@ const CoursePage = () => {
 			<p>Faculty: {course.faculty}</p>
 			<p>Professor: {course.professor}</p>
 			<p>Reviews: {course.reviews.length}</p>
+
+      <CourseReviewForm />
 			<h2>Reviews:</h2>
 			<CourseReviewsList />
 			<Link to="/courses">Back to Course List</Link>
