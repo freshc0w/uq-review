@@ -38,6 +38,7 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 	const tempUser = !user.username
 		? users.find(u => u.id === user).username
 		: user.username;
+	const tempName = !user.name ? users.find(u => u.id === user).name : user.name;
 	const tempCourse = !course.code
 		? courses.find(c => c.id === course).code
 		: course.code;
@@ -108,6 +109,10 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 			<Line
 				label="User"
 				content={tempUser}
+			/>
+			<Line
+				label="Author name"
+				content={tempName}
 			/>
 			<Line
 				label="Course"
