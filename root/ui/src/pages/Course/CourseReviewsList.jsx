@@ -18,10 +18,6 @@ const CourseReviewsList = () => {
 		dispatch(removeCourseReview(courseReview.id));
 	};
 
-  useEffect(() => {
-    dispatch(initialiseCourseReviews())
-  },[dispatch])
-
 	return (
 		<>
 			<h2>CourseReviews</h2>

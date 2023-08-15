@@ -12,12 +12,12 @@ import CourseInfoRow from './CourseInfoRow';
 
 const CourseListPage = () => {
 	const dispatch = useDispatch();
-	const courses = useSelector(({ courses }) => courses);
-
+  
 	// TODO: handle adding, removing and updating courses
 	useEffect(() => {
-		dispatch(initialiseCourses());
+    dispatch(initialiseCourses());
 	}, [dispatch]);
+  const courses = useSelector(({ courses }) => courses);
 
 	// TODO: add more info in the table
 	// TODO: add a link to the course's reviews

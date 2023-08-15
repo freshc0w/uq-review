@@ -14,10 +14,6 @@ const CourseReviewForm = ({ course }) => {
 	const dispatch = useDispatch();
 	const courseReviewFormRef = useRef();
 
-	useEffect(() => {
-    dispatch(initialiseUsers());
-	}, [dispatch]);
-
   // obtain the currently logged in user
   const loggedUser = useSelector(({ user }) => user);
   const users = useSelector(({ users }) => users);

@@ -20,10 +20,11 @@ const CoursePage = () => {
   
   const dispatch = useDispatch();
   
+  // TODO: Create reducers for updating course info when a review is added or removed.
   useEffect(() => {
     dispatch(initialiseCourses());
-    dispatch(initialiseUsers());
     dispatch(initialiseCourseReviews());
+    dispatch(initialiseUsers());
   }, [dispatch]);
   const user = useSelector(({ user }) => user);
   const users = useSelector(({ users }) => users);
