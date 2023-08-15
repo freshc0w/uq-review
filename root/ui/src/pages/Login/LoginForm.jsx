@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../../reducers/userReducer';
 
 import loginService from '../../services/login';
-import courseReviewServices from '../../services/courseReviews';
+import courseReviewsServices from '../../services/courseReviews';
+import professorReviewsServices from '../../services/professorReviews';
 
 const LoginForm = () => {
 	const [username, setUsername] = useState('');
@@ -24,7 +25,8 @@ const LoginForm = () => {
 			window.localStorage.setItem('loggedUser', JSON.stringify(user));
 
 			// TODO: set token for course reviews and professor reviews
-			courseReviewServices.setToken(user.token);
+			courseReviewsServices.setToken(user.token);
+      professorReviewsServices.setToken(user.token);
 
 			dispatch(setUser(user));
 

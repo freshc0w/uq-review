@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 const Line = ({ label, content }) => {
 	const noSpaceStyle = {
 		margin: 0,
@@ -10,7 +12,8 @@ const Line = ({ label, content }) => {
 	);
 };
 
-const ProfessorReviewDisplay = ({ professorReview }) => {
+const ProfessorReviewDisplay = ({ professorReview, handleRemoveReview }) => {
+	const users = useSelector(({ users }) => users);
 	const {
 		title,
 		rating,
@@ -30,6 +33,19 @@ const ProfessorReviewDisplay = ({ professorReview }) => {
 		professor,
 		comments,
 	} = professorReview;
+
+	const tempCoursesTaken = !coursesTaken ? 'None added yet...' : coursesTaken;
+
+	const tempUser = !user.username
+		? users.find(u => u.id === user).username
+		: user.username;
+
+	const tempName = !user.name ? users.find(u => u.id === user).name : user.name;
+
+	const removeReview = () => {
+		if (window.confirm(`Are you sure you want to delete ${title}?`))
+			handleRemoveReview(professorReview.id.toString());
+	};
 
 	return (
 		<li>
@@ -85,20 +101,17 @@ const ProfessorReviewDisplay = ({ professorReview }) => {
 				label="Cons"
 				content={cons}
 			/>
-			{coursesTaken.map(ct => (
-				<Line
-					key={ct.id}
-					label="Course Taken"
-					content={ct.code}
-				/>
-			))}
+			<Line
+				label="Courses Taken"
+				content={tempCoursesTaken}
+			/>
 			<Line
 				label="UserName"
-				content={user.username}
+				content={tempUser}
 			/>
 			<Line
 				label="Author name"
-				content={user.name}
+				content={tempName}
 			/>
 			<Line
 				label="Professor"
@@ -111,6 +124,11 @@ const ProfessorReviewDisplay = ({ professorReview }) => {
 					content={c.comment}
 				/>
 			))}
+
+			{/* Delete this review */}
+			{user.id === professorReview.user.id && (
+				<button onClick={removeReview}>Delete Review</button>
+			)}
 		</li>
 	);
 };

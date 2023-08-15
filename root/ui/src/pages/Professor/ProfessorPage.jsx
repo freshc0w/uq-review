@@ -6,20 +6,25 @@ import {
 	createProfessor,
 	removeProfessor,
 } from '../../reducers/professorsReducer';
+import { initialiseProfessorReviews } from '../../reducers/professorReviewsReducer';
+import { initialiseUsers } from '../../reducers/usersReducer';
 
 import ProfessorReviewForm from './ProfessorReviewForm';
 import ProfessorReviewsList from './ProfessorReviewsList';
 
 // Assumes there is a professor with the given id in the params.
 const ProfessorPage = () => {
+  const id = useParams().id;
+  const professors = useSelector(({ professors }) => professors);
+  const professor = professors.find(professor => professor.id === id);
+
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(initialiseProfessors());
+    dispatch(initialiseUsers());
+    dispatch(initialiseProfessorReviews());
 	}, [dispatch]);
 
-	const id = useParams().id;
-	const professors = useSelector(({ professors }) => professors);
-	const professor = professors.find(professor => professor.id === id);
 
 	// If no professor is found return null.
 	if (!professor) return null;
@@ -46,7 +51,7 @@ const ProfessorPage = () => {
 					))
 				)}
 			</p>
-			<ProfessorReviewForm />
+			<ProfessorReviewForm professor={professor}/>
 			<h2>Reviews:</h2>
 			<ProfessorReviewsList />
 			<Link to="/professors">Back to Professor List</Link>

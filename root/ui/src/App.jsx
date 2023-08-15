@@ -13,6 +13,7 @@ import usersServices from './services/users';
 import coursesServices from './services/courses';
 import professorsServices from './services/professors';
 import courseReviewsServices from './services/courseReviews';
+import professorReviewsServices from './services/professorReviews';
 
 // reducers
 import {
@@ -60,6 +61,7 @@ const App = () => {
 
 			// TODO: set token for course reviews and professor reviews
 			courseReviewsServices.setToken(user.token);
+      professorReviewsServices.setToken(user.token);
 		}
 	}, [dispatch]);
 

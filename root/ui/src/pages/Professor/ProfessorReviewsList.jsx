@@ -14,6 +14,10 @@ const ProfessorReviewsList = () => {
 		({ professorReviews }) => professorReviews
 	);
 
+	const removeOneReview = professorReview => {
+		dispatch(removeProfessorReview(professorReview.id));
+	};
+
 	// TODO: handle adding, removing and updating professor reviews
 	useEffect(() => {
 		dispatch(initialiseProfessorReviews());
@@ -27,6 +31,7 @@ const ProfessorReviewsList = () => {
 					<ProfessorReviewDisplay
 						key={professorReview.id}
 						professorReview={professorReview}
+						handleRemoveReview={() => removeOneReview(professorReview)}
 					/>
 				))}
 			</ul>

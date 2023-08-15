@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export const useField = (name, type, settings = {}) => {
   const { min, max, rows, cols } = settings;
-	const [value, setValue] = useState('');
+	const [value, setValue] = type === 'range' ? useState(50) : useState('');
 
 	const onChange = e => {
 		setValue(e.target.value);

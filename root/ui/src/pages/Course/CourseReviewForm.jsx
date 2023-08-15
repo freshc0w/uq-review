@@ -5,6 +5,7 @@ import { useReviewField } from '../../hooks';
 import Togglable from '../../components/Togglable';
 import renderField from '../../utils/helper/renderField';
 import { useEffect } from 'react';
+import { initialiseUsers } from '../../reducers/usersReducer';
 
 // helper function to get the value of a field
 const getFieldValue = field => field.fieldProps.value;
@@ -13,13 +14,15 @@ const CourseReviewForm = ({ course }) => {
 	const dispatch = useDispatch();
 	const courseReviewFormRef = useRef();
 
-	// Obtain the currently logged in user
-	const user = useSelector(({ user }) => user);
-
 	useEffect(() => {
-		console.log(user);
-	}, []);
+    dispatch(initialiseUsers());
+	}, [dispatch]);
 
+  // obtain the currently logged in user
+  const loggedUser = useSelector(({ user }) => user);
+  const users = useSelector(({ users }) => users);
+
+  const user = users.find(user => user.username === loggedUser.username);
 
 	const reviewFields = {
 		title: useReviewField('review title: ', 'text'),
@@ -72,7 +75,7 @@ const CourseReviewForm = ({ course }) => {
 				getFieldValue(reviewFields.con2),
 				getFieldValue(reviewFields.con3),
 			].filter(con => con !== ''),
-      user: user.id,
+      // user: user.id,
 			course: course.id,
 			likes: 0,
 			dislikes: 0,
