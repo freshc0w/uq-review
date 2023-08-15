@@ -5,7 +5,7 @@ import {
 	initialiseProfessors,
 	createProfessor,
 	removeProfessor,
-} from '../reducers/professorsReducer';
+} from '../../reducers/professorsReducer';
 
 import ProfessorReviewsList from './ProfessorReviewsList';
 

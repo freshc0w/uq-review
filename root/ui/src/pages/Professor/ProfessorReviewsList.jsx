@@ -4,7 +4,7 @@ import {
 	initialiseProfessorReviews,
 	createProfessorReview,
 	removeProfessorReview,
-} from '../reducers/professorReviewsReducer';
+} from '../../reducers/professorReviewsReducer';
 
 import ProfessorReviewDisplay from './ProfessorReviewDisplay';
 

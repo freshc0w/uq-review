@@ -6,7 +6,7 @@ import {
 	initialiseCourses,
 	createCourse,
 	removeCourse,
-} from '../reducers/coursesReducer';
+} from '../../reducers/coursesReducer'
 
 import CourseInfoRow from './CourseInfoRow';
 

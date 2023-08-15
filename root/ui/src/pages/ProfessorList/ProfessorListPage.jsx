@@ -1,11 +1,11 @@
-import './CourseListPage.css'; // For middle text-alignment TEMPORARY
+import './ProfessorListPage.css'; // For middle text-alignment TEMPORARY
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	initialiseProfessors,
 	createProfessor,
 	removeProfessor,
-} from '../reducers/professorsReducer';
+} from '../../reducers/professorsReducer';
 import ProfessorInfoRow from './ProfessorInfoRow';
 
 const ProfessorListPage = () => {

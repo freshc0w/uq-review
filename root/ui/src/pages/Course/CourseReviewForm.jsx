@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { useReviewField } from '../hooks';
-import Togglable from './Togglable';
-import CustomInput from './CustomInput';
-import CustomRangeInput from './CustomRangeInput';
+import { useReviewField } from '../../hooks';
+import Togglable from '../../components/Togglable';
+import CustomInput from '../../components/CustomInput';
+import CustomRangeInput from '../../components/CustomRangeInput';
 
 const renderField = ({ fieldProps }) => {
 	switch (fieldProps.type) {

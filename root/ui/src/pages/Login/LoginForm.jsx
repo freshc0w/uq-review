@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setUser } from '../reducers/userReducer';
+import { setUser } from '../../reducers/userReducer';
 
-import loginService from '../services/login';
-import courseReviewServices from '../services/courseReviews';
+import loginService from '../../services/login';
+import courseReviewServices from '../../services/courseReviews';
 
 const LoginForm = () => {
 	const [username, setUsername] = useState('');

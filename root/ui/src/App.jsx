@@ -24,11 +24,11 @@ import { setUser } from './reducers/userReducer';
 
 // Components
 import TempNav from './components/TempNav';
-import LoginForm from './components/LoginForm';
-import CourseListPage from './components/CourseListPage';
-import ProfessorListPage from './components/ProfessorListPage';
-import CoursePage from './components/CoursePage';
-import ProfessorPage from './components/ProfessorPage';
+import LoginForm from './pages/Login/LoginForm';
+import CourseListPage from './pages/CourseList/CourseListPage';
+import ProfessorListPage from './pages/ProfessorList/ProfessorListPage';
+import CoursePage from './pages/Course/CoursePage';
+import ProfessorPage from './pages/Professor/ProfessorPage';
 
 const LogOutButton = () => {
 	const dispatch = useDispatch();
@@ -53,8 +53,11 @@ const App = () => {
 		<>
 			<Router>
 				<TempNav />
-				{!user ? <LoginForm /> : <LogOutButton />}
 				<Routes>
+					<Route
+						path="/"
+						element={!user ? <LoginForm /> : <LogOutButton />}
+					/>
 					<Route
 						path="/courses"
 						element={<CourseListPage />}

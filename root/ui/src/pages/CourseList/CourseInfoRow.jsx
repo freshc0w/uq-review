@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import Td from './Td'; // helper that wraps content into a Link if a link is provided
+import Td from '../../components/Td'; // helper that wraps content into a Link if a link is provided
 
 const CourseInfoRow = ({ course }) => {
 	const navigate = useNavigate();
