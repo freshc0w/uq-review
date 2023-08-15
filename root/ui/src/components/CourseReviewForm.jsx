@@ -1,31 +1,62 @@
-import { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { useField } from '../hooks';
-
+import { useReviewField } from '../hooks';
 import Togglable from './Togglable';
 import CustomTextInput from './CustomTextInput';
+import CustomRangeInput from './CustomRangeInput';
+
+const renderField = ({ fieldProps }) => {
+	switch (fieldProps.type) {
+		case 'text':
+			return (
+				<CustomTextInput
+					inputId={`add-review__${fieldProps.name}`}
+					label={fieldProps.name}
+					propsInfo={{ ...fieldProps }}
+				/>
+			);
+		case 'range':
+			return (
+				<CustomRangeInput
+					inputId={`add-review__${fieldProps.name}`}
+					label={fieldProps.name}
+					propsInfo={{ ...fieldProps }}
+				/>
+			);
+		default:
+			return (
+				<label htmlFor={`add-review__${fieldProps.name}`}>
+					{fieldProps.name}:
+					<textarea
+						id={`add-review__${fieldProps.name}`}
+						{...fieldProps}
+					></textarea>
+				</label>
+			);
+	}
+};
 
 const CourseReviewForm = () => {
 	const dispatch = useDispatch();
 	const courseReviewFormRef = useRef();
-	const { reset: resetCourseTitle, ...courseTitle } = useField(
-		'course title',
-		'text'
-	);
-	const { reset: resetRating, ...rating } = useField('rating', 'number', {
-		min: 0,
-		max: 100,
-	});
-	const { reset: resetCourseCode, ...courseCode } = useField('text');
 
-	// Helper that reset all fields
-	const resetFields = (...fields) => {
-		fields.forEach(resetFnc => resetFnc());
+	const reviewFields = [
+		useReviewField('course title: ', 'text'),
+		useReviewField('your review ', '', { rows: 5, cols: 30 }),
+		useReviewField('semester taken: ', 'text'),
+		useReviewField('rating', 'range', { min: 0, max: 100 }),
+		useReviewField('difficulty', 'range', { min: 0, max: 100 }),
+		useReviewField('lecture quality', 'range', { min: 0, max: 100 }),
+		useReviewField('tutorial quality', 'range', { min: 0, max: 100 }),
+		useReviewField('workload', 'range', { min: 0, max: 100 }),
+	];
+
+	const resetFields = () => {
+		reviewFields.forEach(({ resetField }) => resetField());
 	};
 
 	const addReview = e => {
 		e.preventDefault();
-
 		courseReviewFormRef.current.toggleVisibility();
 	};
 
@@ -36,19 +67,12 @@ const CourseReviewForm = () => {
 		>
 			<h1>Course Review Form</h1>
 			<form onSubmit={addReview}>
-				<CustomTextInput
-					inputId="course-title"
-					label={'Course Title: '}
-					propsInfo={{ ...courseTitle }}
-				/>
-				<CustomTextInput
-					inputId="rating"
-					label={'Rating: '}
-					propsInfo={{ ...rating }}
-				/>
+				{reviewFields.map((field, index) => (
+					<div key={index}>{renderField(field)}</div>
+				))}
 				<button type="submit">Add Review</button>
 			</form>
-			<button onClick={() => resetFields(resetCourseCode)}>Reset</button>
+			<button onClick={resetFields}>Reset</button>
 		</Togglable>
 	);
 };

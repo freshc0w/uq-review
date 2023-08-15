@@ -10,6 +10,7 @@ const CustomTextInput = ({ inputId, label, propsInfo }) => {
 					{...propsInfo}
 				/>
 			</label>
+      
 		</div>
 	);
 };

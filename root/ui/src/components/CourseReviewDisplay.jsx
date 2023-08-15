@@ -15,7 +15,7 @@ const CourseReviewDisplay = ({ courseReview }) => {
 		title, 
     rating,
     content,
-    semster,
+    semester,
     date,
     difficulty,
     lectureQuality,
@@ -36,7 +36,7 @@ const CourseReviewDisplay = ({ courseReview }) => {
 			<Line label="Title" content={title} />
       <Line label="Rating" content={rating} />
       <Line label="Content" content={content} />
-      <Line label="Semester" content={semster} />
+      <Line label="Semester" content={semester} />
       <Line label="Date Created" content={date} />
       <Line label="Difficulty" content={difficulty} />
       <Line label="Lecture Quality" content={lectureQuality} />
