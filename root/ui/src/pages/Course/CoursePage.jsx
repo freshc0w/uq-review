@@ -38,7 +38,7 @@ const CoursePage = () => {
 			<p>Professor: {course.professor}</p>
 			<p>Reviews: {course.reviews.length}</p>
 
-			<CourseReviewForm />
+			<CourseReviewForm course={course} />
 			<h2>Reviews:</h2>
 			<CourseReviewsList />
 			<Link to="/courses">Back to Course List</Link>

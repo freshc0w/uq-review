@@ -1,19 +1,28 @@
-import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createCourseReview } from '../../reducers/courseReviewsReducer';
 import { useReviewField } from '../../hooks';
 import Togglable from '../../components/Togglable';
 import renderField from '../../utils/helper/renderField';
+import { useEffect } from 'react';
 
 // helper function to get the value of a field
 const getFieldValue = field => field.fieldProps.value;
 
-const CourseReviewForm = () => {
+const CourseReviewForm = ({ course }) => {
 	const dispatch = useDispatch();
 	const courseReviewFormRef = useRef();
 
+	// Obtain the currently logged in user
+	const user = useSelector(({ user }) => user);
+
+	useEffect(() => {
+		console.log(user);
+	}, []);
+
 	const reviewFields = {
 		title: useReviewField('course title: ', 'text'),
-		review: useReviewField('your review ', '', { rows: 5, cols: 30 }),
+		content: useReviewField('your review ', '', { rows: 5, cols: 30 }),
 		semester: useReviewField('semester taken: ', 'text'),
 		rating: useReviewField('rating', 'range', { min: 0, max: 100 }),
 		difficulty: useReviewField('difficulty', 'range', { min: 0, max: 100 }),
@@ -26,6 +35,12 @@ const CourseReviewForm = () => {
 			max: 100,
 		}),
 		workload: useReviewField('workload', 'range', { min: 0, max: 100 }),
+		pro1: useReviewField('pro1', 'text'),
+		pro2: useReviewField('pro2', 'text'),
+		pro3: useReviewField('pro3', 'text'),
+		con1: useReviewField('con1', 'text'),
+		con2: useReviewField('con2', 'text'),
+		con3: useReviewField('con3', 'text'),
 	};
 
 	const resetFields = () => {
@@ -34,7 +49,43 @@ const CourseReviewForm = () => {
 
 	const addReview = e => {
 		e.preventDefault();
+
+		const newReview = {
+			title: getFieldValue(reviewFields.title),
+			content: getFieldValue(reviewFields.content),
+			semester: getFieldValue(reviewFields.semester),
+			professor: course.professor,
+			date: new Date(),
+			rating: getFieldValue(reviewFields.rating),
+			difficulty: getFieldValue(reviewFields.difficulty),
+			lectureQuality: getFieldValue(reviewFields.lectureQuality),
+			tutorialQuality: getFieldValue(reviewFields.tutorialQuality),
+			workload: getFieldValue(reviewFields.workload),
+			pros: [
+				getFieldValue(reviewFields.pro1),
+				getFieldValue(reviewFields.pro2),
+				getFieldValue(reviewFields.pro3),
+			].filter(pro => pro !== ''),
+			cons: [
+				getFieldValue(reviewFields.con1),
+				getFieldValue(reviewFields.con2),
+				getFieldValue(reviewFields.con3),
+			].filter(con => con !== ''),
+			user: user.id,
+			course: course.id,
+			likes: 0,
+			dislikes: 0,
+			reports: 0,
+			comments: [],
+		};
+
 		courseReviewFormRef.current.toggleVisibility();
+
+		// dispatch action to add review
+		dispatch(createCourseReview(newReview));
+
+		// reset fields
+		resetFields();
 	};
 
 	return (

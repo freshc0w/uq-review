@@ -12,20 +12,6 @@ const LoginForm = () => {
 
 	const dispatch = useDispatch();
 
-	// Firstly, we check if the user is already logged in.
-	useEffect(() => {
-
-    // ? Best way to check if user is logged in?
-		const loggedUserJSON = window.localStorage.getItem('loggedUser');
-		if (loggedUserJSON) {
-			const user = JSON.parse(loggedUserJSON);
-			dispatch(setUser(user));
-
-			// TODO: set token for course reviews and professor reviews
-			courseReviewServices.setToken(user.token);
-		}
-	}, [dispatch]);
-
 	const handleLogin = async e => {
 		e.preventDefault();
 
