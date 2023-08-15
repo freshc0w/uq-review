@@ -15,7 +15,7 @@ const CourseReviewForm = () => {
 		title: useReviewField('course title: ', 'text'),
 		review: useReviewField('your review ', '', { rows: 5, cols: 30 }),
 		semester: useReviewField('semester taken: ', 'text'),
-		course: useReviewField('course taken: ', 'text'),
+		coursesTaken: useReviewField('course taken: ', 'text'),
 		rating: useReviewField('rating', 'range', { min: 0, max: 100 }),
 		communication: useReviewField('communication rating', 'range', {
 			min: 0,
@@ -35,6 +35,21 @@ const CourseReviewForm = () => {
 
 	const addReview = e => {
 		e.preventDefault();
+
+    const newReview = {
+      title: getFieldValue(reviewFields.title),
+      content: getFieldValue(reviewFields.review),
+      semester: getFieldValue(reviewFields.semester),
+      coursesTaken: getFieldValue(reviewFields.coursesTaken),
+      date: new Date(),
+      rating: getFieldValue(reviewFields.rating),
+      communication: getFieldValue(reviewFields.communication),
+      approachability: getFieldValue(reviewFields.approachability),
+      feedback: getFieldValue(reviewFields.feedback),
+      workload: getFieldValue(reviewFields.workload),
+
+    }
+
 		courseReviewFormRef.current.toggleVisibility();
 	};
 

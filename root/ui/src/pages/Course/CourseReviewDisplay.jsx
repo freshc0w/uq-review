@@ -42,8 +42,6 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 		? courses.find(c => c.id === course).code
 		: course.code;
 
-	console.log('temp user:', tempUser);
-
 	const removeReview = () => {
 		if (window.confirm(`Are you sure you want to delete ${title}?`))
 			handleRemoveReview(courseReview.id.toString());

@@ -15,12 +15,7 @@ const professorReviewSchema = new mongoose.Schema({
 	pros: [],
 	cons: [],
 	comments: [],
-	coursesTaken: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Course',
-		},
-	],
+	coursesTaken: String,
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',

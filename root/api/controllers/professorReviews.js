@@ -15,10 +15,6 @@ professorReviewsRouter.get('/', async (req, res) => {
 			faculty: 1,
 			avgRating: 1,
 		})
-		.populate('coursesTaken', {
-			code: 1,
-			title: 1,
-		});
 
 	res.json(professorReviews);
 });
@@ -35,10 +31,6 @@ professorReviewsRouter.get('/:id', async (req, res) => {
 			faculty: 1,
 			avgRating: 1,
 		})
-		.populate('coursesTaken', {
-			code: 1,
-			title: 1,
-		});
 
 	foundProfessorReview
 		? res.json(foundProfessorReview)
@@ -65,7 +57,7 @@ professorReviewsRouter.post('/', async (req, res) => {
 		reports: body.reports,
 		pros: body.pros,
 		cons: body.cons,
-		coursesTaken: body.coursesTaken, // Array of course ids
+		coursesTaken: body.coursesTaken,
 		user: user._id,
 		professor: body.professor, // Professor id
 	});
@@ -117,7 +109,7 @@ professorReviewsRouter.put('/:id', async (req, res) => {
 		reports: body.reports,
 		pros: body.pros,
 		cons: body.cons,
-		coursesTaken: body.coursesTaken, // Array of course ids
+		coursesTaken: body.coursesTaken,
 	};
 
 	await ProfessorReview.findByIdAndUpdate(
