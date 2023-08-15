@@ -58,7 +58,7 @@ professorReviewsRouter.post('/', async (req, res) => {
 		pros: body.pros,
 		cons: body.cons,
 		coursesTaken: body.coursesTaken,
-		user: user._id,
+		user: user.id,
 		professor: body.professor, // Professor id
 	});
 

@@ -45,6 +45,7 @@ courseReviewsRouter.get('/:id', async (req, res) => {
 courseReviewsRouter.post('/', async (req, res) => {
 	const body = req.body;
 	const user = req.user; // from middleware
+	console.log('user', user);
 
 	const createdCourseReview = new CourseReview({
 		title: body.title,
