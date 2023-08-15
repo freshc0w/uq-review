@@ -18,6 +18,8 @@ const CourseReviewsList = () => {
 		dispatch(removeCourseReview(courseReview.id));
 	};
 
+  // TODO: update one review
+
 	return (
 		<>
 			<h2>CourseReviews</h2>
