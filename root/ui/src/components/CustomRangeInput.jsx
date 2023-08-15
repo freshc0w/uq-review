@@ -1,10 +1,10 @@
-import CustomTextInput from './CustomTextInput';
-// Higher order fnc of CustomTextInput that displays the value of the range input
+import CustomInput from './CustomInput';
+// Higher order fnc of CustomInput that displays the value of the range input
 
 const CustomRangeInput = ({ inputId, label, propsInfo }) => {
 	return (
 		<div>
-			<CustomTextInput
+			<CustomInput
 				inputId={inputId}
 				label={label}
 				propsInfo={propsInfo}

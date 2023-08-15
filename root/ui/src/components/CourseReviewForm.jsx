@@ -2,14 +2,14 @@ import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useReviewField } from '../hooks';
 import Togglable from './Togglable';
-import CustomTextInput from './CustomTextInput';
+import CustomInput from './CustomInput';
 import CustomRangeInput from './CustomRangeInput';
 
 const renderField = ({ fieldProps }) => {
 	switch (fieldProps.type) {
 		case 'text':
 			return (
-				<CustomTextInput
+				<CustomInput
 					inputId={`add-review__${fieldProps.name}`}
 					label={fieldProps.name}
 					propsInfo={{ ...fieldProps }}
