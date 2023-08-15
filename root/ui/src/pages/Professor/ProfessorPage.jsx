@@ -7,6 +7,7 @@ import {
 	removeProfessor,
 } from '../../reducers/professorsReducer';
 
+import ProfessorReviewForm from './ProfessorReviewForm';
 import ProfessorReviewsList from './ProfessorReviewsList';
 
 // Assumes there is a professor with the given id in the params.
@@ -23,8 +24,6 @@ const ProfessorPage = () => {
 	// If no professor is found return null.
 	if (!professor) return null;
 
-	console.log(professor);
-
 	// TODO: handle the CRUD of the professor's reviews
 
 	return (
@@ -35,6 +34,7 @@ const ProfessorPage = () => {
 			<p>Average Rating: {professor.avgRating}</p>
 			<p>Faculty: {professor.faculty}</p>
 			<p>Reviews: {professor.reviews.length}</p>
+
 			<p>
 				{/* If no courses are found, add the "None added yet..." msg*/}
 				Courses taught:{' '}
@@ -46,6 +46,7 @@ const ProfessorPage = () => {
 					))
 				)}
 			</p>
+			<ProfessorReviewForm />
 			<h2>Reviews:</h2>
 			<ProfessorReviewsList />
 			<Link to="/professors">Back to Professor List</Link>

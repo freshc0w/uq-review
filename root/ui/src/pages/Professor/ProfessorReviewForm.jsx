@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useReviewField } from '../../hooks';
 import Togglable from '../../components/Togglable';
@@ -15,16 +15,17 @@ const CourseReviewForm = () => {
 		title: useReviewField('course title: ', 'text'),
 		review: useReviewField('your review ', '', { rows: 5, cols: 30 }),
 		semester: useReviewField('semester taken: ', 'text'),
+		course: useReviewField('course taken: ', 'text'),
 		rating: useReviewField('rating', 'range', { min: 0, max: 100 }),
-		difficulty: useReviewField('difficulty', 'range', { min: 0, max: 100 }),
-		lectureQuality: useReviewField('lecture quality', 'range', {
+		communication: useReviewField('communication rating', 'range', {
 			min: 0,
 			max: 100,
 		}),
-		tutorialQuality: useReviewField('tutorial quality', 'range', {
+		approachability: useReviewField('approachability rating', 'range', {
 			min: 0,
 			max: 100,
 		}),
+		feedback: useReviewField('feedback rating', 'range', { min: 0, max: 100 }),
 		workload: useReviewField('workload', 'range', { min: 0, max: 100 }),
 	};
 
