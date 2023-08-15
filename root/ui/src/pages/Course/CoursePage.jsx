@@ -6,6 +6,8 @@ import {
 	createCourse,
 	removeCourse,
 } from '../../reducers/coursesReducer';
+import { initialiseCourseReviews } from '../../reducers/courseReviewsReducer';
+import { initialiseUsers } from '../../reducers/usersReducer';
 
 import CourseReviewForm from './CourseReviewForm';
 import CourseReviewsList from './CourseReviewsList';
@@ -13,16 +15,22 @@ import CourseReviewsList from './CourseReviewsList';
 // Assumes there is a course with the given id in the params.
 const CoursePage = () => {
 	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(initialiseCourses());
-	}, [dispatch]);
-
+  
 	const id = useParams().id;
 	const courses = useSelector(({ courses }) => courses);
 	const course = courses.find(course => course.id === id);
 
 	// If no course is found return null.
 	if (!course) return null;
+
+	useEffect(() => {
+		dispatch(initialiseCourses());
+		dispatch(initialiseUsers());
+	}, [dispatch]);
+
+  useEffect(() => {
+    dispatch(initialiseCourseReviews());
+  }, [course.reviews])
 
 	// TODO: handle the CRUD of the course's reviews
 

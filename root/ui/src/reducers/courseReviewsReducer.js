@@ -37,9 +37,12 @@ export const createCourseReview = newCourseReviewObj => {
 		const newCourseReview = await courseReviewsServices.create(
 			newCourseReviewObj
 		);
+    
 		dispatch(appendCourseReviews(newCourseReview));
 	};
 };
+
+
 
 // TODO: Updates a course review based on the id
 

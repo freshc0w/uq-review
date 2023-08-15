@@ -20,8 +20,9 @@ const CourseReviewForm = ({ course }) => {
 		console.log(user);
 	}, []);
 
+
 	const reviewFields = {
-		title: useReviewField('course title: ', 'text'),
+		title: useReviewField('review title: ', 'text'),
 		content: useReviewField('your review ', '', { rows: 5, cols: 30 }),
 		semester: useReviewField('semester taken: ', 'text'),
 		rating: useReviewField('rating', 'range', { min: 0, max: 100 }),
@@ -44,7 +45,7 @@ const CourseReviewForm = ({ course }) => {
 	};
 
 	const resetFields = () => {
-		reviewFields.forEach(({ resetField }) => resetField());
+		Object.values(reviewFields).forEach(({ resetField }) => resetField());
 	};
 
 	const addReview = e => {
@@ -71,7 +72,7 @@ const CourseReviewForm = ({ course }) => {
 				getFieldValue(reviewFields.con2),
 				getFieldValue(reviewFields.con3),
 			].filter(con => con !== ''),
-			user: user.id,
+      user: user.id,
 			course: course.id,
 			likes: 0,
 			dislikes: 0,

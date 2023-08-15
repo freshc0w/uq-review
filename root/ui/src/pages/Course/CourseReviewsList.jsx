@@ -8,15 +8,19 @@ import {
 import CourseReviewDisplay from './CourseReviewDisplay';
 
 const CourseReviewsList = () => {
-  const dispatch = useDispatch();
-  
-	useEffect(() => {
-    dispatch(initialiseCourseReviews());
-	}, [dispatch]);
+	const dispatch = useDispatch();
 
-  // TODO: handle adding, removing and updating course reviews
+	// TODO: handle adding, removing and updating course reviews
 
 	const courseReviews = useSelector(({ courseReviews }) => courseReviews);
+
+	const removeOneReview = courseReview => {
+		dispatch(removeCourseReview(courseReview.id));
+	};
+
+  useEffect(() => {
+    dispatch(initialiseCourseReviews())
+  },[dispatch])
 
 	return (
 		<>
@@ -26,6 +30,7 @@ const CourseReviewsList = () => {
 					<CourseReviewDisplay
 						key={courseReview.id}
 						courseReview={courseReview}
+						handleRemoveReview={() => removeOneReview(courseReview)}
 					/>
 				))}
 			</ul>
