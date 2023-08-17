@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const Line = ({ label, content }) => {
@@ -7,14 +8,16 @@ const Line = ({ label, content }) => {
 	};
 	return (
 		<p style={noSpaceStyle}>
-			<strong>{label}:</strong> {content}
+			<strong>{label}:</strong> {content}{' '}
 		</p>
 	);
 };
 
 const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
+	const [currCourseReview, setCurrCourseReview] = useState(courseReview);
 	const users = useSelector(({ users }) => users);
 	const courses = useSelector(({ courses }) => courses);
+
 	const {
 		title,
 		rating,
@@ -33,15 +36,29 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 		user,
 		course,
 		comments,
-	} = courseReview;
+	} = currCourseReview;
 
-	const tempUser = !user.username
-		? users.find(u => u.id === user).username
-		: user.username;
-	const tempName = !user.name ? users.find(u => u.id === user).name : user.name;
-	const tempCourse = !course.code
-		? courses.find(c => c.id === course).code
-		: course.code;
+  const incrementLike = () => {
+
+  }
+
+  const decrementLike = () => {
+    
+  }
+
+	const getUserName = () => {
+		return !user.username
+			? users.find(u => u.id === user).username
+			: user.username;
+	};
+
+	const getName = () => {
+		return !user.name ? users.find(u => u.id === user).name : user.name;
+	};
+
+	const getCourseCode = () => {
+		return !course.code ? courses.find(c => c.id === course).code : course.code;
+	};
 
 	const removeReview = () => {
 		if (window.confirm(`Are you sure you want to delete ${title}?`))
@@ -108,15 +125,15 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 			/>
 			<Line
 				label="User"
-				content={tempUser}
+				content={getUserName()}
 			/>
 			<Line
 				label="Author name"
-				content={tempName}
+				content={getName()}
 			/>
 			<Line
 				label="Course"
-				content={tempCourse}
+				content={getCourseCode()}
 			/>
 			{comments.map(c => (
 				<Line

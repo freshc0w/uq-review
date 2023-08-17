@@ -26,6 +26,7 @@ const CoursePage = () => {
     dispatch(initialiseCourseReviews());
     dispatch(initialiseUsers());
   }, [dispatch]);
+  
   const user = useSelector(({ user }) => user);
   const users = useSelector(({ users }) => users);
   
