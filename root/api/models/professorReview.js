@@ -1,5 +1,32 @@
 const mongoose = require('mongoose');
 
+const commentSchema = new mongoose.Schema({
+  content: String,
+  date: Date,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
+  dislikes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
+  reports: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
+});
+
 const professorReviewSchema = new mongoose.Schema({
 	title: String,
 	content: String,
@@ -9,12 +36,12 @@ const professorReviewSchema = new mongoose.Schema({
 	communicationRating: Number,
 	approachabilityRating: Number,
 	feedbackRating: Number,
-	likes: Number,
-	dislikes: Number,
-	reports: Number,
+	likes: [],
+	dislikes: [],
+	reports: [],
 	pros: [],
 	cons: [],
-	comments: [],
+	comments: [commentSchema],
 	coursesTaken: String,
 	user: {
 		type: mongoose.Schema.Types.ObjectId,

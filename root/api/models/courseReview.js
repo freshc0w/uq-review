@@ -1,5 +1,32 @@
 const mongoose = require('mongoose');
 
+const commentSchema = new mongoose.Schema({
+  content: String,
+  date: Date,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
+  dislikes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
+  reports: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
+});
+
 const courseReviewSchema = new mongoose.Schema({
 	title: String,
 	content: String,
@@ -11,12 +38,26 @@ const courseReviewSchema = new mongoose.Schema({
 	lectureQuality: Number,
 	tutorialQuality: Number,
 	workload: Number,
-	likes: Number,
-	dislikes: Number,
-	reports: Number,
+  // collation of user ids. We use the length of this array to calculate the likes/dislikes
+	likes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  }],
+	dislikes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
+	reports: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
 	pros: [],
 	cons: [],
-	comments: [],
+	comments: [commentSchema],
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
