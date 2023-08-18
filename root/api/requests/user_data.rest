@@ -18,6 +18,17 @@ Content-Type: application/json
   "password": "11111"
 }
 
+### Make another user
+POST {{BASE_URL}}/users
+Content-Type: application/json
+
+{
+  "username": "fiveTwos",
+  "email": "fiveTwos@gmail.com",
+  "name": "five twos",
+  "password": "22222"
+}
+
 ### Update a single user and resets reviews. CAN ALSO UPDATE REVIEWS
 PUT {{BASE_URL}}/users/{{ID}}
 Content-Type: application/json
