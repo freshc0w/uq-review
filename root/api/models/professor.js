@@ -7,18 +7,24 @@ const professorSchema = mongoose.Schema({
 	},
 	faculty: String,
 	avgRating: Number,
-	courses: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Course',
-		},
-	],
-	reviews: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'ProfessorReview',
-		},
-	],
+	courses: {
+		type: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Course',
+			},
+		],
+		default: [],
+	},
+	reviews: {
+		type: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'ProfessorReview',
+			},
+		],
+		default: [],
+	},
 });
 
 professorSchema.set('toJSON', {

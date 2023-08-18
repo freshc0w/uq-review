@@ -21,6 +21,9 @@ const professorsRouter = require('./controllers/professors');
 const courseReviewsRouter = require('./controllers/courseReviews');
 const professorReviewsRouter = require('./controllers/professorReviews');
 
+// seed data
+const seedData = require('./seed/seedAll');
+
 app.use(cors());
 app.use(express.static('dist'));
 app.use(express.json());
@@ -60,6 +63,11 @@ if (process.env.NODE_ENV === 'test') {
 	const testingRouter = require('./controllers/testing');
 	app.use('/api/testing', testingRouter);
 }
+
+// Seed courses if node_env is development
+// if (process.env.NODE_ENV === 'development') {
+// 	seedData();
+// }
 
 // error handling
 app.use(middleware.unknownEndpoint);

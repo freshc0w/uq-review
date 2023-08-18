@@ -14,12 +14,15 @@ const courseSchema = new mongoose.Schema({
 	professor: String,
 	avgRating: Number,
 	units: Number,
-	reviews: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'CourseReview',
-		},
-	],
+	reviews: {
+		type: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'ProfessorReview',
+			},
+		],
+		default: [],
+	},
 });
 
 courseSchema.plugin(uniqueValidator);
