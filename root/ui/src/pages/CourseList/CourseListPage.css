@@ -1,12 +1,7 @@
-td {
-  text-align: center;
-  padding: 0.5rem;
+.course-info-row {
+  font-size: 0.8rem;
 }
-
-tr {
-  transition: 0.3s;
-}
-
-tr:hover {
+.course-info-row:hover {
+  cursor: pointer;
   background-color: azure;
 }

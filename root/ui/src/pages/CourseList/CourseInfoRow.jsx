@@ -23,6 +23,7 @@ const CourseInfoRow = memo(({ course, style }) => {
 		<div
 			style={clickableStyle}
 			onClick={handleClick}
+      className='course-info-row'
 		>
 			{[code, title, avgRating, professor, reviews.length].map(
 				(content, i) => (
