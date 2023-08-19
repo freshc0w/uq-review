@@ -4,6 +4,8 @@ import Td from '../../components/Td'; // helper that wraps content into a Link i
 
 const CourseInfoRow = memo(({ course, style }) => {
 	const navigate = useNavigate();
+  console.log('rendering course info row');
+  
 	const { code, title, avgRating, faculty, professor, reviews } = course;
 
 	const clickableStyle = {
@@ -25,7 +27,7 @@ const CourseInfoRow = memo(({ course, style }) => {
 			onClick={handleClick}
       className='course-info-row'
 		>
-			{[code, title, avgRating, professor, reviews.length].map(
+			{[code, title, avgRating, professor, (reviews.length || 0)].map(
 				(content, i) => (
 					<Td
 						key={i}

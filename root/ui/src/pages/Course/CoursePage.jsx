@@ -18,14 +18,16 @@ import CourseReviewsList from './CourseReviewsList';
 
 // Assumes there is a course with the given id in the params.
 const CoursePage = () => {
+  const dispatch = useDispatch();
+  
 	const id = useParams().id;
+  
 	const courses = useSelector(({ courses }) => courses);
 	const course = courses.find(course => course.id === id);
+
 	const [courseReviewLength, setCourseReviewLength] = useState(
 		course?.reviews?.length || 0
 	);
-
-	const dispatch = useDispatch();
 
 	// TODO: Create reducers for updating course info when a review is added or removed.
 	useEffect(() => {
