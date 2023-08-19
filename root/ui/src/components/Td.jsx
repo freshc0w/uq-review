@@ -5,11 +5,7 @@ import { Link } from 'react-router-dom';
 const Td = ({ children, to }) => {
 	// Conditionally wrapping content into a Link
 	const ContentTag = to ? Link : 'div';
-	return (
-		<td>
-			<ContentTag to={to}>{children}</ContentTag>
-		</td>
-	);
+	return <ContentTag style={{wordWrap: 'auto', maxWidth: '20%', minWidth: '20%', textAlign: 'center', overflow: 'hidden'}} to={to}>{children}</ContentTag>;
 };
 
 export default Td;
