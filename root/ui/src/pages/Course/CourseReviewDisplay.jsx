@@ -8,9 +8,9 @@ const Line = ({ label, content, other }) => {
 	};
 	return (
 		<div style={noSpaceStyle}>
-			<strong>{label}:</strong> {content}
-      {/* Temporary */}
-      {other ? <em>{other}</em> : null} 
+			<strong>{label}:</strong> {content !== null ? content : 'not given'}
+			{/* Temporary */}
+			{other ? <em>{other}</em> : null}
 		</div>
 	);
 };
@@ -39,8 +39,6 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 		course,
 		comments,
 	} = currCourseReview;
-
-	console.log(comments);
 
 	const incrementLike = () => {};
 
@@ -117,11 +115,11 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 			/>
 			<Line
 				label="Pros"
-				content={pros}
+				content={pros.filter(pro => pro !== null).join(', ')}
 			/>
 			<Line
 				label="Cons"
-				content={cons}
+				content={cons.filter(con => con !== null).join(', ')}
 			/>
 			<Line
 				label="User"
@@ -140,7 +138,7 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 					<Line
 						label="Comment"
 						content={c.content}
-            other={[c.user, c.date]}
+						other={[c.user, c.date]}
 					/>
 				</div>
 			))}

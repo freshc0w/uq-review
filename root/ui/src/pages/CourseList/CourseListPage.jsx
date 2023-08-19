@@ -1,5 +1,5 @@
 import './CourseListPage.css'; // For middle text-alignment
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -18,6 +18,8 @@ const CourseListPage = () => {
     dispatch(initialiseCourses());
 	}, [dispatch]);
   const courses = useSelector(({ courses }) => courses);
+  
+  const memoizedCourses = useMemo(() => courses, [courses])
 
 	// TODO: add more info in the table
 	// TODO: add a link to the course's reviews
@@ -36,7 +38,7 @@ const CourseListPage = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{[...courses].map(course => (
+					{memoizedCourses.map(course => (
 						<CourseInfoRow
 							key={course.id}
 							course={course}

@@ -8,17 +8,18 @@ import { useEffect } from 'react';
 import { initialiseUsers } from '../../reducers/usersReducer';
 
 // helper function to get the value of a field
-const getFieldValue = field => field.fieldProps.value;
+const getFieldValue = field =>
+	!field.fieldProps.value || field.fieldProps.value === '' ? null : field.fieldProps.value;
 
-const CourseReviewForm = ({ course }) => {
+const CourseReviewForm = ({ course, handleCreateCourseReview }) => {
 	const dispatch = useDispatch();
 	const courseReviewFormRef = useRef();
 
-  // obtain the currently logged in user
-  const loggedUser = useSelector(({ user }) => user);
-  const users = useSelector(({ users }) => users);
+	// obtain the currently logged in user
+	const loggedUser = useSelector(({ user }) => user);
+	const users = useSelector(({ users }) => users);
 
-  const user = users.find(user => user.username === loggedUser.username);
+	const user = users.find(user => user.username === loggedUser.username);
 
 	const reviewFields = {
 		title: useReviewField('review title: ', 'text'),
@@ -71,18 +72,18 @@ const CourseReviewForm = ({ course }) => {
 				getFieldValue(reviewFields.con2),
 				getFieldValue(reviewFields.con3),
 			].filter(con => con !== ''),
-      // user: user.id,
 			course: course.id,
-			likes: 0,
-			dislikes: 0,
-			reports: 0,
+			likes: [],
+			dislikes: [],
+			reports: [],
 			comments: [],
 		};
 
+    // Hide form upon submission
 		courseReviewFormRef.current.toggleVisibility();
 
 		// dispatch action to add review
-		dispatch(createCourseReview(newReview));
+		handleCreateCourseReview(newReview);
 
 		// reset fields
 		resetFields();

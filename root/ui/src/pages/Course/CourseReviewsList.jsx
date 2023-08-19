@@ -7,18 +7,12 @@ import {
 } from '../../reducers/courseReviewsReducer';
 import CourseReviewDisplay from './CourseReviewDisplay';
 
-const CourseReviewsList = () => {
-	const dispatch = useDispatch();
-
+const CourseReviewsList = ({ handleRemoveReview }) => {
 	// TODO: handle adding, removing and updating course reviews
 
 	const courseReviews = useSelector(({ courseReviews }) => courseReviews);
 
-	const removeOneReview = courseReview => {
-		dispatch(removeCourseReview(courseReview.id));
-	};
-
-  // TODO: update one review
+	// TODO: update one review
 
 	return (
 		<>
@@ -28,7 +22,7 @@ const CourseReviewsList = () => {
 					<CourseReviewDisplay
 						key={courseReview.id}
 						courseReview={courseReview}
-						handleRemoveReview={() => removeOneReview(courseReview)}
+						handleRemoveReview={() => handleRemoveReview(courseReview)}
 					/>
 				))}
 			</ul>

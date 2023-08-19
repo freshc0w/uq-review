@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import {
@@ -6,7 +6,11 @@ import {
 	createCourse,
 	removeCourse,
 } from '../../reducers/coursesReducer';
-import { initialiseCourseReviews } from '../../reducers/courseReviewsReducer';
+import {
+	initialiseCourseReviews,
+	createCourseReview,
+	removeCourseReview,
+} from '../../reducers/courseReviewsReducer';
 import { initialiseUsers } from '../../reducers/usersReducer';
 
 import CourseReviewForm from './CourseReviewForm';
@@ -14,27 +18,42 @@ import CourseReviewsList from './CourseReviewsList';
 
 // Assumes there is a course with the given id in the params.
 const CoursePage = () => {
-  const id = useParams().id;
-  const courses = useSelector(({ courses }) => courses);
-  const course = courses.find(course => course.id === id);
-  
-  const dispatch = useDispatch();
-  
-  // TODO: Create reducers for updating course info when a review is added or removed.
-  useEffect(() => {
-    dispatch(initialiseCourses());
-    dispatch(initialiseCourseReviews());
-    dispatch(initialiseUsers());
-  }, [dispatch]);
-  
-  const user = useSelector(({ user }) => user);
-  const users = useSelector(({ users }) => users);
-  
+	const id = useParams().id;
+	const courses = useSelector(({ courses }) => courses);
+	const course = courses.find(course => course.id === id);
+	const [courseReviewLength, setCourseReviewLength] = useState(
+		course?.reviews?.length || 0
+	);
+
+	const dispatch = useDispatch();
+
+	// TODO: Create reducers for updating course info when a review is added or removed.
+	useEffect(() => {
+		dispatch(initialiseCourses());
+		dispatch(initialiseCourseReviews());
+		dispatch(initialiseUsers());
+	}, [dispatch]);
+
+	// TODO: handle the CRUD of the course's reviews
+	useEffect(() => {
+		setCourseReviewLength(course?.reviews?.length || 0);
+	}, [course?.reviews?.length]);
+
+	const user = useSelector(({ user }) => user);
+	const users = useSelector(({ users }) => users);
+
 	// If no course is found return null.
 	if (!course) return null;
 
+	const createOneReview = courseReview => {
+		dispatch(createCourseReview(courseReview));
+		setCourseReviewLength(() => courseReviewLength + 1);
+	};
 
-	// TODO: handle the CRUD of the course's reviews
+	const removeOneReview = courseReview => {
+		dispatch(removeCourseReview(courseReview.id));
+		setCourseReviewLength(() => courseReviewLength - 1);
+	};
 
 	return (
 		<div>
@@ -43,14 +62,25 @@ const CoursePage = () => {
 			<p>Course Title: {course.title}</p>
 			<p>Course Code: {course.code}</p>
 			<p>Average Rating: {course.avgRating}</p>
-			<p>Url: {course.url} </p>
+			<a
+				href={`https://my.uq.edu.au/programs-courses/course.html?course_code=${course.code}`}
+        target='_blank'
+			>
+				{`https://my.uq.edu.au/programs-courses/course.html?course_code=${course.code}`}
+			</a>
+			{/* <p>Url: {course.url} </p> */}
 			<p>Faculty: {course.faculty}</p>
 			<p>Professor: {course.professor}</p>
-			<p>Reviews: {course.reviews.length}</p>
+			<p>Reviews: {courseReviewLength}</p>
 
-			<CourseReviewForm course={course} user={user} users={users}/>
+			<CourseReviewForm
+				course={course}
+				user={user}
+				users={users}
+				handleCreateCourseReview={createOneReview}
+			/>
 			<h2>Reviews:</h2>
-			<CourseReviewsList />
+			<CourseReviewsList handleRemoveReview={removeOneReview} />
 			<Link to="/courses">Back to Course List</Link>
 		</div>
 	);
