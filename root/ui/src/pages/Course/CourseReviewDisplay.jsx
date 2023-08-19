@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const Line = ({ label, content }) => {
+const Line = ({ label, content, other }) => {
 	const noSpaceStyle = {
 		margin: 0,
 		padding: 0,
 	};
 	return (
-		<p style={noSpaceStyle}>
-			<strong>{label}:</strong> {content}{' '}
-		</p>
+		<div style={noSpaceStyle}>
+			<strong>{label}:</strong> {content}
+      {/* Temporary */}
+      {other ? <em>{other}</em> : null} 
+		</div>
 	);
 };
 
@@ -38,13 +40,11 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 		comments,
 	} = currCourseReview;
 
-  const incrementLike = () => {
+	console.log(comments);
 
-  }
+	const incrementLike = () => {};
 
-  const decrementLike = () => {
-    
-  }
+	const decrementLike = () => {};
 
 	const getUserName = () => {
 		return !user.username
@@ -105,15 +105,15 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 			/>
 			<Line
 				label="Likes"
-				content={likes}
+				content={likes.length}
 			/>
 			<Line
 				label="Dislikes"
-				content={dislikes}
+				content={dislikes.length}
 			/>
 			<Line
 				label="Reports"
-				content={reports}
+				content={reports.length}
 			/>
 			<Line
 				label="Pros"
@@ -136,11 +136,13 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 				content={getCourseCode()}
 			/>
 			{comments.map(c => (
-				<Line
-					key={c.id}
-					label="Comment"
-					content={c.comment}
-				/>
+				<div key={c.id}>
+					<Line
+						label="Comment"
+						content={c.content}
+            other={[c.user, c.date]}
+					/>
+				</div>
 			))}
 
 			{/* Delete this review */}
