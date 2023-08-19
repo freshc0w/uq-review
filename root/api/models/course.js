@@ -18,7 +18,7 @@ const courseSchema = new mongoose.Schema({
 		type: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: 'ProfessorReview',
+				ref: 'CourseReview',
 			},
 		],
 		default: [],

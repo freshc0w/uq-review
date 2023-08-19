@@ -1,5 +1,5 @@
 @BASE_URL = http://localhost:3001/api
-@ID = 64d472dd5dd883cfffd5de3f
+@ID = 64df62004cb4f7752ad4d280
 ### Get a list of all courses
 GET {{BASE_URL}}/courses
 

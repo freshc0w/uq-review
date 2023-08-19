@@ -1,7 +1,10 @@
 @BASE_URL = http://localhost:3001/api
-@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTE2NTQ3MTMsImV4cCI6MTY5MjI1OTUxM30.x5oIEJd3s5f64Zajopwhc8U-A7TRkuDNpGa5qP9u7Ao
-@ID = 64d5dec8341b867da8dd3f58
-@COMMENT_ID = bbb97dc4-9d35-4306-8cd1-155e0f634c4b
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpdmVPbmVzIiwiaWQiOiI2NGQ0OTU2MjhmM2E2OGZkYzQ1ZTVmZmYiLCJpYXQiOjE2OTI0MjgzNzksImV4cCI6MTY5MzAzMzE3OX0.mUSsYH89dnogxCJo07Zl2uT4rIpI_T0vsxrJEbGl6mc
+@ID = 64e06a7fada1e353c7381f1a
+
+# ABTS1000
+@COURSE_ID = 64df62004cb4f7752ad4d280 
+@COMMENT_ID = 64e06bb0fe4c2b958ae3f17e
 
 ### GET all course reviews
 GET {{BASE_URL}}/courseReviews
@@ -15,22 +18,23 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 {
-  "title": "Introduction to Computer Science Review",
-  "content": "I thoroughly enjoyed this course.",
-  "semester": "Fall 2023",
-  "professor": "Professor Snape",
-  "date": "2023-08-10T12:34:56Z",
-  "rating": 4.5,
+  "title": "Introduction to Computer Science",
+  "content": "This course was a great introduction to the field of computer science. The professor was knowledgeable and engaging, and the workload was manageable.",
+  "semester": "Fall 2021",
+  "professor": "Dr. Smith",
+  "date": "2021-10-01T00:00:00.000Z",
+  "rating": 4,
   "difficulty": 3,
   "lectureQuality": 4,
   "tutorialQuality": 3,
-  "workload": 2,
-  "likes": 15,
-  "dislikes": 2,
-  "reports": 0,
-  "pros": ["Engaging lectures", "Helpful resources"],
-  "cons": ["Heavy workload"],
-  "course": "64d472dd5dd883cfffd5de3f"
+  "workload": 3,
+  "likes": [],
+  "dislikes": [],
+  "reports": [],
+  "pros": ["Engaging professor", "Interesting material"],
+  "cons": ["Some assignments were unclear"],
+  "comments": [],
+  "course": "64df62004cb4f7752ad4d280"
 }
 
 ### UPDATE a course review
@@ -39,22 +43,22 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 {
-  "title": "Introduction to Computer Science Review",
-  "content": "Actually, I didn't enjoy this course...",
-  "semester": "Fall 2023",
-  "professor": "Professor Snape",
-  "date": "2023-08-10T12:34:56Z",
-  "rating": 4.0,
+  "title": "Introduction to Computer Science",
+  "content": "ACTUALLY, this wasn't a good course",
+  "semester": "Fall 2021",
+  "professor": "Dr. Smith",
+  "date": "2021-10-01T00:00:00.000Z",
+  "rating": 4,
   "difficulty": 3,
   "lectureQuality": 4,
   "tutorialQuality": 3,
-  "workload": 2,
-  "likes": 15,
-  "dislikes": 2,
-  "reports": 0,
-  "pros": ["Engaging lectures", "Helpful resources"],
-  "cons": ["Heavy workload"],
-  "course": "64d472dd5dd883cfffd5de3f"
+  "workload": 3,
+  "likes": [],
+  "dislikes": [],
+  "reports": [],
+  "pros": ["Engaging professor", "Interesting material"],
+  "cons": ["Some assignments were unclear"],
+  "course": "64df62004cb4f7752ad4d280"
 }
 
 ### DELETE a course review.
@@ -70,7 +74,11 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 {
-  "comment": "I agree with this review."
+  "content": "I really agree with this review.",
+  "date": "2021-10-01T00:00:00.000Z",
+  "likes:": [],
+  "dislikes:": [],
+  "reports": []
 }
 
 ### UPDATE a comment in a course review.
@@ -79,8 +87,13 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 {
-  "comment": "Actually.. I disagree with this review."
+  "content": "I REALLY DISAGREE agree with this review.",
+  "date": "2021-10-01T00:00:00.000Z",
+  "likes:": [],
+  "dislikes:": [],
+  "reports": []
 }
 
 ### DELETE a comment from a course review.
 DELETE {{BASE_URL}}/courseReviews/{{ID}}/comments/{{COMMENT_ID}}
+Authorization: Bearer {{TOKEN}}
