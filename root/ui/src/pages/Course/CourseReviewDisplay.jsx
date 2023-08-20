@@ -34,7 +34,6 @@ const CourseReviewDisplay = ({
 
 	// Find current user
 	const loggedUser = users.find(u => u.username === setUser.username);
-	console.log(loggedUser);
 
 	const {
 		title,

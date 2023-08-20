@@ -68,7 +68,6 @@ export const likeCourseReview = (id, userId) => {
 			// Remove the user from the dislikes list if they are in it
 			dislikes: courseReviewToChange.dislikes.filter(d => d !== userId),
 		};
-		console.log(changedCourseReview);
 		await courseReviewsServices.update(id, changedCourseReview);
 		dispatch(updateCourseReviews(changedCourseReview));
 	};

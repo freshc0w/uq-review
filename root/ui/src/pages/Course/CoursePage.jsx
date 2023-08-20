@@ -18,13 +18,13 @@ import CourseReviewsList from './CourseReviewsList';
 
 // Assumes there is a course with the given id in the params.
 const CoursePage = () => {
-  const dispatch = useDispatch();
-  
+	const dispatch = useDispatch();
+
 	const id = useParams().id;
-  
+
 	const courses = useSelector(({ courses }) => courses);
 	const course = courses.find(course => course.id === id);
-  const courseReviews = useSelector(({ courseReviews }) => courseReviews);
+	const courseReviews = useSelector(({ courseReviews }) => courseReviews);
 
 	const [courseReviewLength, setCourseReviewLength] = useState(
 		course?.reviews?.length || 0
@@ -53,10 +53,6 @@ const CoursePage = () => {
 		setCourseReviewLength(() => courseReviewLength + 1);
 	};
 
-  const updateOneReview = courseReview => {
-    
-  }
-
 	const removeOneReview = courseReview => {
 		dispatch(removeCourseReview(courseReview.id));
 		setCourseReviewLength(() => courseReviewLength - 1);
@@ -71,7 +67,7 @@ const CoursePage = () => {
 			<p>Average Rating: {course.avgRating}</p>
 			<a
 				href={`https://my.uq.edu.au/programs-courses/course.html?course_code=${course.code}`}
-        target='_blank'
+				target="_blank"
 			>
 				{`https://my.uq.edu.au/programs-courses/course.html?course_code=${course.code}`}
 			</a>
@@ -87,7 +83,11 @@ const CoursePage = () => {
 				handleCreateCourseReview={createOneReview}
 			/>
 			<h2>Reviews:</h2>
-			<CourseReviewsList handleRemoveReview={removeOneReview} handleUpdateReview={updateOneReview} course={course} allCourseReviews={courseReviews} />
+			<CourseReviewsList
+				handleRemoveReview={removeOneReview}
+				course={course}
+				allCourseReviews={courseReviews}
+			/>
 			<Link to="/courses">Back to Course List</Link>
 		</div>
 	);
