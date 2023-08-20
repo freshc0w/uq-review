@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import CourseReviewDisplay from './CourseReviewDisplay';
 
-const CourseReviewsList = ({ handleRemoveReview, course, allCourseReviews }) => {
+const CourseReviewsList = ({ handleRemoveReview, handleUpdateReview, course, allCourseReviews }) => {
 	// TODO: handle adding, removing and updating course reviews
 	// TODO: update one review
 
@@ -24,6 +24,7 @@ const CourseReviewsList = ({ handleRemoveReview, course, allCourseReviews }) => 
 						key={courseReview.id}
 						courseReview={courseReview}
 						handleRemoveReview={() => handleRemoveReview(courseReview)}
+            handleUpdateReview={handleUpdateReview}
 					/>
 				))}
 			</ul>

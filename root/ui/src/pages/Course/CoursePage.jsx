@@ -53,6 +53,10 @@ const CoursePage = () => {
 		setCourseReviewLength(() => courseReviewLength + 1);
 	};
 
+  const updateOneReview = courseReview => {
+    
+  }
+
 	const removeOneReview = courseReview => {
 		dispatch(removeCourseReview(courseReview.id));
 		setCourseReviewLength(() => courseReviewLength - 1);
@@ -83,7 +87,7 @@ const CoursePage = () => {
 				handleCreateCourseReview={createOneReview}
 			/>
 			<h2>Reviews:</h2>
-			<CourseReviewsList handleRemoveReview={removeOneReview} course={course} allCourseReviews={courseReviews} />
+			<CourseReviewsList handleRemoveReview={removeOneReview} handleUpdateReview={updateOneReview} course={course} allCourseReviews={courseReviews} />
 			<Link to="/courses">Back to Course List</Link>
 		</div>
 	);

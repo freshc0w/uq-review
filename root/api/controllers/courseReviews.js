@@ -113,7 +113,7 @@ courseReviewsRouter.put('/:id', async (req, res) => {
 		dislikes: body.dislikes,
 		pros: body.pros,
 		cons: body.cons,
-		user: body.user,
+    // user is not updated since it is the same user
 		course: body.course, // course id
 	};
 

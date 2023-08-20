@@ -1,5 +1,10 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+	likeCourseReview,
+	dislikeCourseReview,
+} from '../../reducers/courseReviewsReducer';
 
 const Line = ({ label, content, other }) => {
 	const noSpaceStyle = {
@@ -15,10 +20,21 @@ const Line = ({ label, content, other }) => {
 	);
 };
 
-const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
+const CourseReviewDisplay = ({
+	courseReview,
+	handleRemoveReview,
+	handleUpdateReview,
+}) => {
+	const dispatch = useDispatch();
 	const [currCourseReview, setCurrCourseReview] = useState(courseReview);
+
+	const setUser = useSelector(({ user }) => user);
 	const users = useSelector(({ users }) => users);
 	const courses = useSelector(({ courses }) => courses);
+
+	// Find current user
+	const loggedUser = users.find(u => u.username === setUser.username);
+	console.log(loggedUser);
 
 	const {
 		title,
@@ -40,9 +56,41 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 		comments,
 	} = currCourseReview;
 
-	const incrementLike = () => {};
+	const incrementLike = useCallback(() => {
+		// Only allow a user to like a review once.
+		if (!currCourseReview.likes.includes(user.id)) {
+			setCurrCourseReview(prev => ({
+				...prev,
+				likes: [...likes, user.id],
+				dislikes: dislikes.filter(id => id !== user.id),
+			}));
 
-	const decrementLike = () => {};
+			dispatch(likeCourseReview(currCourseReview.id, loggedUser.id));
+		}
+	}, [
+		currCourseReview.likes,
+		currCourseReview.dislikes,
+		setCurrCourseReview,
+		user.id,
+	]);
+
+	const decrementLike = useCallback(() => {
+		// Only allow the user to dislike a review once.
+		if (!currCourseReview.dislikes.includes(user.id)) {
+			setCurrCourseReview(prev => ({
+				...prev,
+				dislikes: [...dislikes, user.id],
+				likes: likes.filter(id => id !== user.id),
+			}));
+
+			dispatch(dislikeCourseReview(currCourseReview.id, loggedUser.id));
+		}
+	}, [
+		currCourseReview.likes,
+		currCourseReview.dislikes,
+		setCurrCourseReview,
+		user.id,
+	]);
 
 	const getUserName = () => {
 		return !user.username
@@ -101,14 +149,20 @@ const CourseReviewDisplay = ({ courseReview, handleRemoveReview }) => {
 				label="Workload"
 				content={workload}
 			/>
-			<Line
-				label="Likes"
-				content={likes.length}
-			/>
-			<Line
-				label="Dislikes"
-				content={dislikes.length}
-			/>
+			<div>
+				<Line
+					label="Likes"
+					content={likes.length}
+				/>
+				<button onClick={incrementLike}>Like</button>
+			</div>
+			<div>
+				<Line
+					label="Dislikes"
+					content={dislikes.length}
+				/>
+				<button onClick={decrementLike}>Dislike</button>
+			</div>
 			<Line
 				label="Reports"
 				content={reports.length}
