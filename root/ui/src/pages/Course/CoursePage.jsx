@@ -24,6 +24,7 @@ const CoursePage = () => {
   
 	const courses = useSelector(({ courses }) => courses);
 	const course = courses.find(course => course.id === id);
+  const courseReviews = useSelector(({ courseReviews }) => courseReviews);
 
 	const [courseReviewLength, setCourseReviewLength] = useState(
 		course?.reviews?.length || 0
@@ -82,7 +83,7 @@ const CoursePage = () => {
 				handleCreateCourseReview={createOneReview}
 			/>
 			<h2>Reviews:</h2>
-			<CourseReviewsList handleRemoveReview={removeOneReview} />
+			<CourseReviewsList handleRemoveReview={removeOneReview} course={course} allCourseReviews={courseReviews} />
 			<Link to="/courses">Back to Course List</Link>
 		</div>
 	);

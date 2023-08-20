@@ -14,10 +14,17 @@ const getConfig = () => {
 	};
 };
 
+// Get all course reviews
 const getAll = async () => {
 	const response = await axios.get(baseUrl);
 	return response.data;
 };
+// Get course reviews based on id
+const getOne = async id => {
+	const response = await axios.get(`${baseUrl}/${id}`);
+	return response.data;
+};
+
 const create = async newObject => {
 	const response = await axios.post(baseUrl, newObject, getConfig());
 	return response.data;
