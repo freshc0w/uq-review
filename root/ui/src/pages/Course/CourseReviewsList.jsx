@@ -9,25 +9,23 @@ const CourseReviewsList = ({
 }) => {
 	// TODO: handle adding, removing and updating course reviews
 	// TODO: update one review
-  const allCourseReviews = useSelector(({ courseReviews }) => courseReviews);
+	const allCourseReviews = useSelector(({ courseReviews }) => courseReviews);
 
 	const courseReviewsList = useMemo(() => {
-    console.log('course reviews changing.')
 		const filteredCourseReviews = allCourseReviews.filter(
 			courseReview => courseReview.course.id === course.id
 		);
 
-    console.log('course.reviews:', course.reviews)
-		const newCourse = allCourseReviews.find(
+    // Newly added courses doesn't have a .id. Their id is .course.
+		const newCourses = allCourseReviews.filter(
 			courseReview => courseReview.course === course.id
 		);
 
-    console.log('prior reviews', filteredCourseReviews)
-    console.log('newCourse:', newCourse)
-		return !newCourse
+		return !newCourses.length
 			? filteredCourseReviews
-			: [...filteredCourseReviews, newCourse];
+			: [...filteredCourseReviews, ...newCourses];
 	}, [allCourseReviews.length]);
+
 	return (
 		<>
 			<h2>CourseReviews</h2>
